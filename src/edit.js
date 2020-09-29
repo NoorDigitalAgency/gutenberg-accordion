@@ -1,55 +1,54 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
+
 import { __ } from '@wordpress/i18n';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
-
+import { useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText } from '@wordpress/block-editor'
+import { Button, ButtonGroup, Dashicon, PanelBody, ColorPalette, ToggleControl } from '@wordpress/components'
+import './editor.scss'
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @param {Object} [props]           Properties passed from the editor.
- * @param {string} [props.className] Class name generated for the block.
- *
- * @return {WPElement} Element to render.
- */
+const icons = {
+	expand: ['plus', 'insert', 'arrow-down', 'arrow-down-alt', 'arrow-down-alt2'],
+	collapse: ['minus', 'remove', 'arrow-up', 'arrow-up-alt', 'arrow-up-alt2']
+}
+
 export default function Edit( { className, attributes, setAttributes } ) {
+
+	const [ expanded, setToggle ] = useState( attributes.initialState );
+
+	const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
 	return (
 		<>
 			<InspectorControls>
-
-			</InspectorControls>
-			
-			<details className={className}>
-				<RichText
-					tagName="summary"
-					value={ attributes.title }
-					formattingControls={ [ 'bold', 'italic' ] } 
-					onChange={ ( title ) => setAttributes( { title } ) }
-					placeholder={ __( 'Heading...' ) }
+				<ToggleControl
+					label="Initial state"
+					help={attributes.initialState ? 'Expanded' : 'Collapsed'}
+					checked={attributes.initialState}
+					onChange={() => setAttributes({initialState: !attributes.initialState})}
 				/>
 
-				<div>
-					<InnerBlocks 
-						allowedBlocks={['core/paragraph', 'core/list']}
-						// template={[['core/paragraph', {}]]}
-						// templateLock="all"
-					/>
-				</div>
-			</details>
+				<PanelBody title="Titletag" initialOpen={ false }>
+					<ButtonGroup mode="radio" onClick={event => setAttributes({ titleTag: event.target.value })}>
+						{tags.map((tag, index) => <Button 
+							key={index}
+							checked={attributes.titleTag}
+							value={tag}
+						>{tag.toUpperCase()}</Button>)}
+					</ButtonGroup>
+
+					<ColorPalette onChange={titleColor => setAttributes({titleColor})} />
+
+					<ColorPalette onChange={backgroundColor => setAttributes({backgroundColor})} />
+				</PanelBody>
+			</InspectorControls>
+			
+			<Dashicon icon={icons.expand[attributes.expand]} />
+			<RichText 
+				style={{color: attributes.titleColor, backgroundColor: attributes.backgroundColor}}
+				tagName={attributes.titleTag}
+				value={attributes.titleContent}
+				allowedFormats={['bold', 'italic', 'align']}
+				onChange={titleContent => setAttributes({titleContent})}
+			/>
 		</>
 	);
 }
