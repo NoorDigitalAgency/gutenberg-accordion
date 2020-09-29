@@ -386,6 +386,7 @@ function Edit(_ref) {
       });
     }
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Dashicon"], {
+    "aria-controls": "accordion",
     icon: "arrow-down-alt2",
     onClick: function onClick() {
       return setToggle(!expanded);
@@ -405,9 +406,11 @@ function Edit(_ref) {
       });
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    id: "accordion",
     className: "noor-block-accordion__content",
-    "area-expanded": "".concat(expanded)
+    "aria-expanded": "".concat(expanded)
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
+    className: "has-background",
     allowedBlocks: ['core/paragraph', 'core/list'],
     template: [['core/paragraph', {}]]
   })));
@@ -517,6 +520,7 @@ __webpack_require__.r(__webpack_exports__);
 function save(_ref) {
   var attributes = _ref.attributes;
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["Dashicon"], {
+    "arIa-controls": "accordion",
     icon: "arrow-down-alt2"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"].Content, {
     className: "noor-block-accordion__title",
@@ -527,9 +531,12 @@ function save(_ref) {
       backgroundColor: attributes.backgroundColor
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    id: "accordion",
     className: "noor-block-accordion__content",
-    "area-expanded": "".concat(attributes.initialState)
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"].Content, null)));
+    "arIa-expanded": "".concat(attributes.initialState)
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"].Content, {
+    className: "has-background"
+  })));
 }
 
 /***/ }),

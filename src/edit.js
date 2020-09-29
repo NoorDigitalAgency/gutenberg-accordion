@@ -41,7 +41,7 @@ export default function Edit( { className, attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			
-			<Dashicon icon="arrow-down-alt2" onClick={() => setToggle(!expanded)} />
+			<Dashicon aria-controls="accordion" icon="arrow-down-alt2" onClick={() => setToggle(!expanded)} />
 			<RichText 
 				className="noor-block-accordion__title"
 				style={{color: attributes.titleColor, backgroundColor: attributes.backgroundColor}}
@@ -50,8 +50,9 @@ export default function Edit( { className, attributes, setAttributes } ) {
 				allowedFormats={['bold', 'italic', 'align']}
 				onChange={titleContent => setAttributes({titleContent})}
 			/>
-			<div className="noor-block-accordion__content" area-expanded={`${expanded}`}>
+			<div id="accordion" className="noor-block-accordion__content" aria-expanded={`${expanded}`}>
 				<InnerBlocks 
+					className="has-background"
 					allowedBlocks={['core/paragraph', 'core/list']}
 					template={[['core/paragraph', {}]]}
 				/>

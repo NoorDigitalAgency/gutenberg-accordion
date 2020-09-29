@@ -22,9 +22,17 @@
 			margin: 0 !important;
 		}
 
-		&[area-expanded="true"] {
+		&[aria-expanded="true"] {
 
 			max-height: 300px;
 		}
 	}
 }
+
+// .has-blackish-background-color {
+// 	background-color: #323232;
+// }
+
+// .has-blackish-color {
+// 	color: #323232;
+// }

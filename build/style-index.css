@@ -14,7 +14,7 @@
   overflow: hidden; }
   .noor-block-accordion__content p {
     margin: 0 !important; }
-  .noor-block-accordion__content[area-expanded="true"] {
+  .noor-block-accordion__content[aria-expanded="true"] {
     max-height: 300px; }
 
 

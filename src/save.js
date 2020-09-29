@@ -6,15 +6,15 @@ export default function save( { attributes } ) {
 
 	return (
 		<>
-			<Dashicon icon="arrow-down-alt2" />
+			<Dashicon arIa-controls="accordion" icon="arrow-down-alt2" />
 			<RichText.Content 
 				className="noor-block-accordion__title"
 				tagName={attributes.titleTag} 
 				value={attributes.titleContent}
 				style={{color: attributes.titleColor, backgroundColor: attributes.backgroundColor}} 
 			/>
-			<div className="noor-block-accordion__content" area-expanded={`${attributes.initialState}`}>
-				<InnerBlocks.Content />
+			<div id="accordion" className="noor-block-accordion__content" arIa-expanded={`${attributes.initialState}`}>
+				<InnerBlocks.Content className="has-background" />
 			</div>
 		</>
 	);

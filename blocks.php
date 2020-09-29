@@ -57,6 +57,20 @@ function noor_blocks_block_init() {
 		'editor_style'  => 'noor-blocks-block-editor',
 		'style'         => 'noor-blocks-block',
 	) );
+
+	// add_theme_support( 'disable-custom-colors' );
+	add_theme_support( 'editor-color-palette', [
+		[
+			'name' => 'White',
+			'slug' => 'white',
+			'color' => '#FFF'
+		],
+		[
+			'name' => 'Black',
+			'slug' => 'black',
+			'color' => '#000'
+		]
+	]);
 }
 add_action( 'init', 'noor_blocks_block_init' );
 
