@@ -41,14 +41,21 @@ export default function Edit( { className, attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			
-			<Dashicon icon={icons.expand[attributes.expand]} />
+			<Dashicon icon="arrow-down-alt2" onClick={() => setToggle(!expanded)} />
 			<RichText 
+				className="noor-block-accordion__title"
 				style={{color: attributes.titleColor, backgroundColor: attributes.backgroundColor}}
 				tagName={attributes.titleTag}
 				value={attributes.titleContent}
 				allowedFormats={['bold', 'italic', 'align']}
 				onChange={titleContent => setAttributes({titleContent})}
 			/>
+			<div className="noor-block-accordion__content" area-expanded={`${expanded}`}>
+				<InnerBlocks 
+					allowedBlocks={['core/paragraph', 'core/list']}
+					template={[['core/paragraph', {}]]}
+				/>
+			</div>
 		</>
 	);
 }

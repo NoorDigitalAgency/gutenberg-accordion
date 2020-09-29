@@ -4,6 +4,26 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-noor-blocks {
-	border: 1px dotted #f00;
+ .noor-block-accordion {
+
+	&__title {
+		margin: 0 auto !important;
+		padding: 0 38px;
+	}
+
+	&__content {
+
+		height: auto;
+		max-height: 0;
+		overflow: hidden;
+
+		p {
+			margin: 0 !important;
+		}
+
+		&[area-expanded="true"] {
+
+			max-height: 300px;
+		}
+	}
 }
