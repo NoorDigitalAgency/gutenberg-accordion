@@ -34,7 +34,11 @@ registerBlockType( 'noor/blocks', {
 			type: 'string',
 			default: '#446B7E'
 		},
-		icon: {
+		expandIcon: {
+			type: 'string',
+			default: 'arrow-down-alt2'
+		},
+		collapseIcon: {
 			type: 'string',
 			default: 'arrow-down-alt2'
 		},

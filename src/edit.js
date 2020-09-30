@@ -2,7 +2,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
-import { Button, ButtonGroup, Dashicon, PanelBody, ToggleControl, SelectControl } from '@wordpress/components'
+import { Button, ButtonGroup, Dashicon, PanelBody, PanelRow, ToggleControl, SelectControl } from '@wordpress/components'
 import './editor.scss'
 
 const icons = {
@@ -39,7 +39,7 @@ export default function Edit( props ) {
 
 	const icons = {
 		expand: ['arrow-down', 'arrow-down-alt2', 'plus'],
-		collapse: ['arrow-up', 'arrow-up-alt2', 'minus-alt2']
+		collapse: ['arrow-up', 'arrow-up-alt2', 'minus']
 	}
 
 	return (
@@ -65,17 +65,35 @@ export default function Edit( props ) {
 				</PanelBody>
 
 				<PanelBody title={__('Icon settings')} initialOpen={false}>
+				<PanelRow>
+				{__('Expand Icon')}
 					<ButtonGroup mode="radio">
 						{icons.expand.map((icon, index) =>  <Button
+							style={attributes.expandIcon === icon ? {background: 'blue'} : null}
 							key={index}
-							checked={attributes.icon}
+							checked={attributes.expandIcon}
 							value={icon}
 							onClick={event => {
 								event.preventDefault();
-								setAttributes({icon: event.currentTarget.value})
+								setAttributes({expandIcon: event.currentTarget.value})
 							}}
 						>{<Dashicon icon={icon} />}</Button>)}
 					</ButtonGroup>
+					</PanelRow>
+					<PanelRow>
+					{__('Collapse Icon')}
+					<ButtonGroup mode="radio">
+						{icons.collapse.map((icon, index) =>  <Button
+							key={index}
+							checked={attributes.collapseIcon}
+							value={icon}
+							onClick={event => {
+								event.preventDefault();
+								setAttributes({collapseIcon: event.currentTarget.value})
+							}}
+						>{<Dashicon icon={icon} />}</Button>)}
+					</ButtonGroup>
+					</PanelRow>
 				</PanelBody>
 				
 				<PanelColorSettings
@@ -104,9 +122,10 @@ export default function Edit( props ) {
 					className={`noor-block-accordion__title ${textColorClass}`} 
 					tagName={attributes.titleTag}
 					value={attributes.titleContent}
+					formattingControls={['bold', 'italic', 'align']}
 					onChange={titleContent => setAttributes({titleContent})}
 				/>
-				<Dashicon icon={attributes.icon} className={textColorClass} />
+				<Dashicon icon={expanded ? attributes.collapseIcon : attributes.expandIcon} className={textColorClass} />
 			</div>
 			<div id="accordion" className="noor-block-accordion__content" aria-expanded={`${attributes.initialState || expanded}`}>
 				<InnerBlocks 

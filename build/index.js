@@ -374,7 +374,7 @@ function Edit(props) {
   var titleTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   var icons = {
     expand: ['arrow-down', 'arrow-down-alt2', 'plus'],
-    collapse: ['arrow-up', 'arrow-up-alt2', 'minus-alt2']
+    collapse: ['arrow-up', 'arrow-up-alt2', 'minus']
   };
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Toggle Settings'),
@@ -407,23 +407,42 @@ function Edit(props) {
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Icon settings'),
     initialOpen: false
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ButtonGroup"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Expand Icon'), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ButtonGroup"], {
     mode: "radio"
   }, icons.expand.map(function (icon, index) {
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+      style: attributes.expandIcon === icon ? {
+        background: 'blue'
+      } : null,
       key: index,
-      checked: attributes.icon,
+      checked: attributes.expandIcon,
       value: icon,
       onClick: function onClick(event) {
         event.preventDefault();
         setAttributes({
-          icon: event.currentTarget.value
+          expandIcon: event.currentTarget.value
         });
       }
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Dashicon"], {
       icon: icon
     }));
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PanelColorSettings"], {
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelRow"], null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Collapse Icon'), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["ButtonGroup"], {
+    mode: "radio"
+  }, icons.collapse.map(function (icon, index) {
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+      key: index,
+      checked: attributes.collapseIcon,
+      value: icon,
+      onClick: function onClick(event) {
+        event.preventDefault();
+        setAttributes({
+          collapseIcon: event.currentTarget.value
+        });
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Dashicon"], {
+      icon: icon
+    }));
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PanelColorSettings"], {
     title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Text color Settings'),
     colorSettings: [{
       value: textColor.color,
@@ -448,13 +467,14 @@ function Edit(props) {
     className: "noor-block-accordion__title ".concat(textColorClass),
     tagName: attributes.titleTag,
     value: attributes.titleContent,
+    formattingControls: ['bold', 'italic', 'align'],
     onChange: function onChange(titleContent) {
       return setAttributes({
         titleContent: titleContent
       });
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Dashicon"], {
-    icon: attributes.icon,
+    icon: expanded ? attributes.collapseIcon : attributes.expandIcon,
     className: textColorClass
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     id: "accordion",
@@ -533,7 +553,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('noo
       type: 'string',
       default: '#446B7E'
     },
-    icon: {
+    expandIcon: {
+      type: 'string',
+      default: 'arrow-down-alt2'
+    },
+    collapseIcon: {
       type: 'string',
       default: 'arrow-down-alt2'
     },
@@ -587,7 +611,7 @@ function save(_ref) {
     tagName: attributes.titleTag,
     value: attributes.titleContent
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-    className: "dashicons dashicons-".concat(attributes.icon, " ").concat(textColorClass),
+    className: "dashicons dashicons-".concat(attributes.initialState ? attributes.collapseIcon : attributes.expandIcon, " ").concat(textColorClass),
     "area-hidden": "true"
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     id: "accordion",

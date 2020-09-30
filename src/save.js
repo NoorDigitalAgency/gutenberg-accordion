@@ -17,7 +17,7 @@ export default function save( { attributes } ) {
 					tagName={attributes.titleTag}
 					value={attributes.titleContent}
 				/>
-				<span className={`dashicons dashicons-${attributes.icon} ${textColorClass}`} area-hidden="true"></span>
+				<span className={`dashicons dashicons-${attributes.initialState ? attributes.collapseIcon : attributes.expandIcon} ${textColorClass}`} area-hidden="true"></span>
 			</div>
 			<div id="accordion" className="noor-block-accordion__content" aria-expanded={attributes.initialState}>
 				<InnerBlocks.Content />
