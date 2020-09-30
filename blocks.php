@@ -58,17 +58,38 @@ function noor_blocks_block_init() {
 		'style'         => 'noor-blocks-block',
 	) );
 
-	// add_theme_support( 'disable-custom-colors' );
+	add_theme_support( 'disable-custom-colors' );
+
 	add_theme_support( 'editor-color-palette', [
-		[
-			'name' => 'White',
-			'slug' => 'white',
-			'color' => '#FFF'
-		],
 		[
 			'name' => 'Black',
 			'slug' => 'black',
-			'color' => '#000'
+			'color' => '#000000'
+		],
+		[
+			'name' => 'Blackish',
+			'slug' => 'black-ish',
+			'color' => '#353535'
+		],
+		[
+			'name' => 'Primary',
+			'slug' => 'primary',
+			'color' => '#446B7E'
+		],
+		[
+			'name' => 'Secondary',
+			'slug' => 'secondary',
+			'color' => '#ECE0D1'
+		],
+		[
+			'name' => 'Secondary Light',
+			'slug' => 'secondary-light',
+			'color' => '#F5EFE8'
+		],
+		[
+			'name' => 'White',
+			'slug' => 'white',
+			'color' => '#FFFFFF'
 		]
 	]);
 }

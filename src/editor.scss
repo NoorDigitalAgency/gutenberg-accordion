@@ -3,27 +3,3 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-
- .noor-block-accordion {
-
-	&__title {
-		margin: 0 auto !important;
-		padding: 0 38px;
-	}
-
-	&__content {
-
-		height: auto;
-		max-height: 0;
-		overflow: hidden;
-
-		p {
-			margin: 0 !important;
-		}
-
-		&[aria-expanded="true"] {
-
-			max-height: 300px;
-		}
-	}
-}

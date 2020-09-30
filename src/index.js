@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import { withColors } from '@wordpress/block-editor'
 import './style.scss';
 import Edit from './edit';
 import save from './save';
@@ -25,13 +26,17 @@ registerBlockType( 'noor/blocks', {
 			type: 'boolean',
 			default: false
 		},
-		titleColor: {
+		textColor: {
 			type: 'string',
-			default: '#0071A1'
+			default: '#ECE0D1'
 		},
 		backgroundColor: {
 			type: 'string',
-			default: '#252525'
+			default: '#446B7E'
+		},
+		icon: {
+			type: 'string',
+			default: 'arrow-down-alt2'
 		},
 		iconColor: {
 			type: 'string',
@@ -42,6 +47,6 @@ registerBlockType( 'noor/blocks', {
 			default: 'right'
 		}
 	},
-	edit: Edit,
+	edit: withColors({textColor: 'color', backgroundColor: 'background-color'})( Edit ),
 	save,
 });

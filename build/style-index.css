@@ -4,18 +4,62 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.noor-block-accordion__title {
-  margin: 0 auto !important;
-  padding: 0 38px; }
+.has-primary-background-color {
+  background-color: #446B7E !important; }
 
-.noor-block-accordion__content {
-  height: auto;
-  max-height: 0;
-  overflow: hidden; }
-  .noor-block-accordion__content p {
-    margin: 0 !important; }
-  .noor-block-accordion__content[aria-expanded="true"] {
-    max-height: 300px; }
+.has-primary-color {
+  color: #446B7E !important; }
+
+.has-secondary-background-color {
+  background-color: #ECE0D1 !important; }
+
+.has-secondary-color {
+  color: #ECE0D1 !important; }
+
+.has-secondary-light-background-color {
+  background-color: #F5EFE8 !important; }
+
+.has-secondary-light-color {
+  color: #F5EFE8 !important; }
+
+.has-black-ish-background-color {
+  background-color: #353535 !important; }
+
+.has-black-ish-color {
+  color: #353535 !important; }
+
+.has-black-background-color {
+  background-color: "#000000" !important; }
+
+.has-black-color {
+  color: "#000000" !important; }
+
+.has-white-background-color {
+  background-color: #FFFFFF !important; }
+
+.has-white-color {
+  color: #FFFFFF !important; }
+
+.noor-block-accordion {
+  display: flex;
+  align-items: center;
+  padding: 0 38px;
+  margin: 16px auto 0; }
+  .noor-block-accordion__title {
+    width: 100%;
+    margin: 0 auto !important; }
+  .noor-block-accordion svg,
+  .noor-block-accordion .dashicons {
+    position: relative;
+    right: -19px; }
+  .noor-block-accordion__content {
+    height: auto;
+    max-height: 0;
+    overflow: hidden; }
+    .noor-block-accordion__content p {
+      margin: 0 !important; }
+    .noor-block-accordion__content[aria-expanded="true"] {
+      max-height: 300px; }
 
 
 /*# sourceMappingURL=style-index.css.map*/

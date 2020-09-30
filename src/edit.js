@@ -1,8 +1,8 @@
 
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element'
-import { InspectorControls, InnerBlocks, RichText } from '@wordpress/block-editor'
-import { Button, ButtonGroup, Dashicon, PanelBody, ColorPalette, ToggleControl } from '@wordpress/components'
+import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
+import { Button, ButtonGroup, Dashicon, PanelBody, ToggleControl, SelectControl } from '@wordpress/components'
 import './editor.scss'
 
 const icons = {
@@ -10,49 +10,106 @@ const icons = {
 	collapse: ['minus', 'remove', 'arrow-up', 'arrow-up-alt', 'arrow-up-alt2']
 }
 
-export default function Edit( { className, attributes, setAttributes } ) {
+const AccordionHead = () => (
+	<InnerBlocks 
+		allowedBlocks={['core/heading']}
+		template={[['core/heading', {placeholder: 'Example title...'}]]}
+		templateLock="all"
+	/>
+);
 
-	const [ expanded, setToggle ] = useState( attributes.initialState );
+const AccordionContent = () => (
+	<InnerBlocks 
+		allowedBlocks={['core/paragraph', 'core/list']}
+		template={[['core/paragraph', {}]]}
+	/>
+)
 
-	const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+export default function Edit( props ) {
+	
+	const { textColor, setTextColor, backgroundColor, setBackgroundColor, className, attributes, setAttributes } = props;
+	
+	const [expanded, setExpanded] = useState(false);
+
+	const textColorClass = textColor != undefined ? textColor.class : '';
+	
+	const backgroundColorClass = backgroundColor != undefined ? backgroundColor.class : '';
+
+	const titleTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+
+	const icons = {
+		expand: ['arrow-down', 'arrow-down-alt2', 'plus'],
+		collapse: ['arrow-up', 'arrow-up-alt2', 'minus-alt2']
+	}
 
 	return (
 		<>
 			<InspectorControls>
-				<ToggleControl
-					label="Initial state"
-					help={attributes.initialState ? 'Expanded' : 'Collapsed'}
-					checked={attributes.initialState}
-					onChange={() => setAttributes({initialState: !attributes.initialState})}
-				/>
+				<PanelBody title={__('Toggle Settings')} initialOpen={true}>
+					<ToggleControl 
+						label="Initial state"
+						help={attributes.initialState ? 'Expanded' : 'Collapsed'}
+						checked={attributes.initialState}
+						onChange={() => setAttributes({initialState: !attributes.initialState})}
+					/>
+				</PanelBody>
 
-				<PanelBody title="Titletag" initialOpen={ false }>
-					<ButtonGroup mode="radio" onClick={event => setAttributes({ titleTag: event.target.value })}>
-						{tags.map((tag, index) => <Button 
+				<PanelBody title={__('Size settings')} initialOpen={false}>
+					<ButtonGroup mode="radio" onClick={event => setAttributes({titleTag: event.target.value})}>
+						{titleTags.map((tag, index) => <Button
 							key={index}
 							checked={attributes.titleTag}
 							value={tag}
 						>{tag.toUpperCase()}</Button>)}
 					</ButtonGroup>
-
-					<ColorPalette onChange={titleColor => setAttributes({titleColor})} />
-
-					<ColorPalette onChange={backgroundColor => setAttributes({backgroundColor})} />
 				</PanelBody>
+
+				<PanelBody title={__('Icon settings')} initialOpen={false}>
+					<ButtonGroup mode="radio">
+						{icons.expand.map((icon, index) =>  <Button
+							key={index}
+							checked={attributes.icon}
+							value={icon}
+							onClick={event => {
+								event.preventDefault();
+								setAttributes({icon: event.currentTarget.value})
+							}}
+						>{<Dashicon icon={icon} />}</Button>)}
+					</ButtonGroup>
+				</PanelBody>
+				
+				<PanelColorSettings
+					title={__('Text color Settings')}
+					colorSettings={[{
+						value: textColor.color,
+						onChange: setTextColor,
+						label: __('Text Color')
+					}]}
+					initialOpen={false}
+				/>
+
+				<PanelColorSettings
+					title={__('Background color Settings')}
+					colorSettings={[{
+						value: backgroundColor.color,
+						onChange: setBackgroundColor,
+						label: __('Background Color')
+					}]}
+					initialOpen={false}
+				/>
 			</InspectorControls>
 			
-			<Dashicon aria-controls="accordion" icon="arrow-down-alt2" onClick={() => setToggle(!expanded)} />
-			<RichText 
-				className="noor-block-accordion__title"
-				style={{color: attributes.titleColor, backgroundColor: attributes.backgroundColor}}
-				tagName={attributes.titleTag}
-				value={attributes.titleContent}
-				allowedFormats={['bold', 'italic', 'align']}
-				onChange={titleContent => setAttributes({titleContent})}
-			/>
-			<div id="accordion" className="noor-block-accordion__content" aria-expanded={`${expanded}`}>
+			<div className={`noor-block-accordion ${backgroundColorClass}`} onClick={() => setExpanded(!expanded)}>
+				<RichText 
+					className={`noor-block-accordion__title ${textColorClass}`} 
+					tagName={attributes.titleTag}
+					value={attributes.titleContent}
+					onChange={titleContent => setAttributes({titleContent})}
+				/>
+				<Dashicon icon={attributes.icon} className={textColorClass} />
+			</div>
+			<div id="accordion" className="noor-block-accordion__content" aria-expanded={`${attributes.initialState || expanded}`}>
 				<InnerBlocks 
-					className="has-background"
 					allowedBlocks={['core/paragraph', 'core/list']}
 					template={[['core/paragraph', {}]]}
 				/>

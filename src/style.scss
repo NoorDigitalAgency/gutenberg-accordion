@@ -4,12 +4,42 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+$colors: (
+	"primary": #446B7E,
+	"secondary": #ECE0D1,
+	"secondary-light": #F5EFE8,
+	"black-ish": #353535,
+	"black": '#000000',
+	"white": #FFFFFF
+) !default;
+
+@each $name, $color in $colors {
+
+	.has-#{$name}-background-color {
+		background-color: $color !important;
+	}
+
+	.has-#{$name}-color {
+		color: $color !important;
+	}
+}
 
 .noor-block-accordion {
 
+	display: flex;
+	align-items: center;
+	padding: 0 38px;
+	margin: 16px auto 0;
+
 	&__title {
+		width: 100%;
 		margin: 0 auto !important;
-		padding: 0 38px;
+	}
+
+	svg,
+	.dashicons {
+		position: relative;
+		right: -19px;
 	}
 
 	&__content {
@@ -28,11 +58,3 @@
 		}
 	}
 }
-
-// .has-blackish-background-color {
-// 	background-color: #323232;
-// }
-
-// .has-blackish-color {
-// 	color: #323232;
-// }

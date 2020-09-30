@@ -3,18 +3,6 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.noor-block-accordion__title {
-  margin: 0 auto !important;
-  padding: 0 38px; }
-
-.noor-block-accordion__content {
-  height: auto;
-  max-height: 0;
-  overflow: hidden; }
-  .noor-block-accordion__content p {
-    margin: 0 !important; }
-  .noor-block-accordion__content[aria-expanded="true"] {
-    max-height: 300px; }
 
 
 /*# sourceMappingURL=index.css.map*/
