@@ -102,9 +102,9 @@ export default function Edit( props ) {
 					formattingControls={['bold', 'italic', 'align']}
 					onChange={titleContent => setAttributes({titleContent})}
 				/>
-				<Dashicon icon={expanded ? attributes.collapseIcon : attributes.expandIcon} className={textColorClass} />
+				<Dashicon icon={expanded ? attributes.collapseIcon : attributes.expandIcon} className={`noor-block-accordion__icon ${textColorClass}`} />
 			</div>
-			<div id="accordion" className="noor-block-accordion__content" aria-expanded={`${attributes.initialState || expanded}`}>
+			<div className="noor-block-accordion__content" aria-expanded={`${attributes.initialState || expanded}`}>
 				<InnerBlocks 
 					allowedBlocks={['core/paragraph', 'core/list']}
 					template={[['core/paragraph', {}]]}

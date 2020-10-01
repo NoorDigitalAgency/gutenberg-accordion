@@ -3,6 +3,11 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.noor-block-accordion__content {
+  display: none; }
+
+.noor-block-accordion + [aria-expanded="true"] {
+  display: block; }
 
 
 /*# sourceMappingURL=index.css.map*/

@@ -3,3 +3,15 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+
+ //*** Accordion block
+ .noor-block-accordion {
+
+	&__content {
+		display: none;
+	}
+	
+	& + [aria-expanded="true"] {
+		display: block;
+	}
+ }

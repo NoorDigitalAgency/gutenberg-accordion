@@ -1,16 +1,34 @@
 import { domLoaded } from '../../../components/helpers'
 
-function Accordions( init ) {
+const animate = ( isExpanded, starttime, element, maxheight, duration ) => {
 
-  let accordions;
+  const runtime = new Date().getTime() - starttime,
+        progress = runtime / duration,
+        value = isExpanded 
+          ? maxheight - (maxheight * Math.min( progress, 1))
+          : (maxheight * Math.min( progress, 1 ));
 
-  Object.assign( this, init);
-  console.log(this.accordions)
+  element.style.height = `${value.toFixed(2)}px`;
+
+  if ( runtime < duration ) {
+
+    requestAnimationFrame( () => animate( isExpanded, starttime, element, maxheight, duration ) );
+  }
 }
 
-domLoaded(status => {
+function toggle ( accordions ) {
+
+  const attribute = 'aria-expanded',
+        sibling = this.nextElementSibling,
+        maxheight = sibling.scrollHeight,
+        isExpanded = maxheight === sibling.offsetHeight;
+
+  return requestAnimationFrame( () => animate( isExpanded, new Date().getTime(), sibling, maxheight, 300 ) );
+}
+
+domLoaded( () => {
   
   const accordions = document.querySelectorAll('.noor-block-accordion');
-  console.log(accordions)
- // new Accordions({ accordions });
+  
+  [...accordions].forEach( accordion => accordion.addEventListener( 'click', toggle, true ) );
 })

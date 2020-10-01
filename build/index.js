@@ -470,9 +470,8 @@ function Edit(props) {
     }
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Dashicon"], {
     icon: expanded ? attributes.collapseIcon : attributes.expandIcon,
-    className: textColorClass
+    className: "noor-block-accordion__icon ".concat(textColorClass)
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-    id: "accordion",
     className: "noor-block-accordion__content",
     "aria-expanded": "".concat(attributes.initialState || expanded)
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
@@ -588,7 +587,7 @@ function save(_ref) {
     tagName: attributes.titleTag,
     value: attributes.titleContent
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", {
-    className: "dashicons dashicons-".concat(attributes.initialState ? attributes.collapseIcon : attributes.expandIcon, " ").concat(textColorClass),
+    className: "noor-block-accordion__icon dashicons dashicons-".concat(attributes.initialState ? attributes.collapseIcon : attributes.expandIcon, " ").concat(textColorClass),
     "area-hidden": "true"
   })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     id: "accordion",
@@ -698,9 +697,9 @@ registerNoorBlocks();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\index.js */"./src/index.js");
-__webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\style.scss */"./src/style.scss");
-module.exports = __webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\editor.scss */"./src/editor.scss");
+__webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/index.js */"./src/index.js");
+__webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/style.scss */"./src/style.scss");
+module.exports = __webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/editor.scss */"./src/editor.scss");
 
 
 /***/ }),

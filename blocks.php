@@ -10,8 +10,6 @@
  * @package         noor
  */
 
- require_once dirname(__FILE__) . '/src/blocks/accordion/accordion_callback.php';
-
  // Register each block type
 function noor_register_block( $dir, $namespace, $assets ) {
 	
@@ -27,7 +25,7 @@ function noor_register_block( $dir, $namespace, $assets ) {
 
 			if ( file_exists( $callback ) ) {
 
-				// $assets['render_callback'] = $block . '_callback';
+				$assets['render_callback'] = $block . '_callback';
 			}
 
 			register_block_type( trailingslashit( $namespace ). $block_name, $assets );
@@ -76,13 +74,9 @@ add_action( 'init', function () {
 // Enqueue frontend assets
 add_action( 'wp_enqueue_scripts', function () {
 
-	if ( ! is_admin() && has_block( 'noor/accordion' ) ) {
-		wp_enqueue_script(
-			'noor-blocks',
-			plugins_url( 'build/accordion.js', __FILE__),
-			NULL,
-			filemtime( plugin_dir_path(__FILE__) . 'build/accordion.js')
-		);
+	if ( has_block( 'noor/accordion' ) ) {
+		
+		wp_enqueue_script( 'noor-blocks', plugins_url( 'build/accordion.js', __FILE__), NULL, filemtime( plugin_dir_path(__FILE__) . 'build/accordion.js'), true );
 	}
 });
 
