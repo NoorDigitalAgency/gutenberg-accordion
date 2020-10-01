@@ -1,29 +1,9 @@
-
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
-import { Button, ButtonGroup, Dashicon, PanelBody, PanelRow, ToggleControl, SelectControl } from '@wordpress/components'
-import './editor.scss'
-
-const icons = {
-	expand: ['plus', 'insert', 'arrow-down', 'arrow-down-alt', 'arrow-down-alt2'],
-	collapse: ['minus', 'remove', 'arrow-up', 'arrow-up-alt', 'arrow-up-alt2']
-}
-
-const AccordionHead = () => (
-	<InnerBlocks 
-		allowedBlocks={['core/heading']}
-		template={[['core/heading', {placeholder: 'Example title...'}]]}
-		templateLock="all"
-	/>
-);
-
-const AccordionContent = () => (
-	<InnerBlocks 
-		allowedBlocks={['core/paragraph', 'core/list']}
-		template={[['core/paragraph', {}]]}
-	/>
-)
+import { Dashicon, PanelBody, ToggleControl } from '@wordpress/components'
+import { RadioGroup } from '../../components/radio-group'
+import './assets/styles/editor.scss'
 
 export default function Edit( props ) {
 	
@@ -42,6 +22,20 @@ export default function Edit( props ) {
 		collapse: ['arrow-up', 'arrow-up-alt2', 'minus']
 	}
 
+	const setTitleTag = event => setAttributes({ titleTag: event.target.value });
+
+	const setExpandIcon = event => {
+		
+		event.preventDefault();
+		return setAttributes({ expandIcon: event.currentTarget.value });
+	}
+
+	const setCollapseIcon = event => {
+		
+		event.preventDefault();
+		return setAttributes({ collapseIcon: event.currentTarget.value });
+	}
+
 	return (
 		<>
 			<InspectorControls>
@@ -55,45 +49,29 @@ export default function Edit( props ) {
 				</PanelBody>
 
 				<PanelBody title={__('Size settings')} initialOpen={false}>
-					<ButtonGroup mode="radio" onClick={event => setAttributes({titleTag: event.target.value})}>
-						{titleTags.map((tag, index) => <Button
-							key={index}
-							checked={attributes.titleTag}
-							value={tag}
-						>{tag.toUpperCase()}</Button>)}
-					</ButtonGroup>
+					<RadioGroup 
+						onClick={setTitleTag} 
+						options={titleTags} 
+						initialChecked={attributes.titleTag} 
+					/>
 				</PanelBody>
 
 				<PanelBody title={__('Icon settings')} initialOpen={false}>
-				<PanelRow>
-				{__('Expand Icon')}
-					<ButtonGroup mode="radio">
-						{icons.expand.map((icon, index) =>  <Button
-							style={attributes.expandIcon === icon ? {background: 'blue'} : null}
-							key={index}
-							checked={attributes.expandIcon}
-							value={icon}
-							onClick={event => {
-								event.preventDefault();
-								setAttributes({expandIcon: event.currentTarget.value})
-							}}
-						>{<Dashicon icon={icon} />}</Button>)}
-					</ButtonGroup>
-					</PanelRow>
-					<PanelRow>
-					{__('Collapse Icon')}
-					<ButtonGroup mode="radio">
-						{icons.collapse.map((icon, index) =>  <Button
-							key={index}
-							checked={attributes.collapseIcon}
-							value={icon}
-							onClick={event => {
-								event.preventDefault();
-								setAttributes({collapseIcon: event.currentTarget.value})
-							}}
-						>{<Dashicon icon={icon} />}</Button>)}
-					</ButtonGroup>
-					</PanelRow>
+					<RadioGroup 
+						label={__('Expand Icon')} 
+						onClick={setExpandIcon} 
+						options={icons.expand} 
+						initialChecked={attributes.expandIcon} 
+						showIcons={true} 
+					/>
+
+					<RadioGroup 
+						label={__('Collapse Icon')} 
+						onClick={setCollapseIcon} 
+						options={icons.collapse} 
+						initialChecked={attributes.collapseIcon} 
+						showIcons={true} 
+					/>
 				</PanelBody>
 				
 				<PanelColorSettings

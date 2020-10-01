@@ -17,10 +17,11 @@
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
-function noor_blocks_block_init() {
-	$dir = dirname( __FILE__ );
+add_action( 'init', function () {
 
+	$dir = dirname( __FILE__ );
 	$script_asset_path = "$dir/build/index.asset.php";
+	
 	if ( ! file_exists( $script_asset_path ) ) {
 		throw new Error(
 			'You need to run `npm start` or `npm run build` for the "noor/blocks" block first.'
@@ -31,8 +32,8 @@ function noor_blocks_block_init() {
 	wp_register_script(
 		'noor-blocks-block-editor',
 		plugins_url( $index_js, __FILE__ ),
-		$script_asset['dependencies'],
-		$script_asset['version']
+		$script_asset['index.js']['dependencies'],
+		$script_asset['index.js']['version']
 	);
 	wp_set_script_translations( 'noor-blocks-block-editor', 'blocks' );
 
@@ -92,8 +93,19 @@ function noor_blocks_block_init() {
 			'color' => '#FFFFFF'
 		]
 	]);
-}
-add_action( 'init', 'noor_blocks_block_init' );
+});
+
+add_action( 'wp_enqueue_scripts', function () {
+
+	if ( ! is_admin() && has_block( 'noor/accordion' ) ) {
+		wp_enqueue_script(
+			'noor-blocks',
+			plugins_url( 'build/accordion.js', __FILE__),
+			NULL,
+			filemtime( plugin_dir_path(__FILE__) . 'build/accordion.js')
+		);
+	}
+});
 
 add_filter( 'block_categories', function( $cat, $post ) {
 	return array_merge(
