@@ -3,7 +3,6 @@ import { useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
 import { Dashicon, PanelBody, ToggleControl } from '@wordpress/components'
 import { RadioGroup } from '../../components/radio-group'
-import './assets/styles/editor.scss'
 
 export default function Edit( props ) {
 	

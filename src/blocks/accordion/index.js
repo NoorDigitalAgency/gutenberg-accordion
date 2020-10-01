@@ -1,15 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import { withColors } from '@wordpress/block-editor'
-import './assets/styles/style.scss'
 import Edit from './edit';
 import save from './save';
 
 export const name = 'accordion';
 
-export const accordion = {
+export const settings = {
   title: __( 'Accordion', 'accordion' ),
 	description: __( 'Accordion block', 'blocks' ),
-	category: 'noor-blocks',
+	category: 'noor-collection',
 	icon: 'list-view',
 	supports: {
 		html: false,
