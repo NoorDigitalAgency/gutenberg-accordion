@@ -1,15 +1,39 @@
 <?php
 /**
  * Plugin Name:     Blocks
- * Description:     Example block written with ESNext standard and JSX support – build step required.
+ * Description:     Collection of custom blocks.
  * Version:         0.1.0
- * Author:          The WordPress Contributors
- * License:         GPL-2.0-or-later
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:          Noor
+ * Author URI:      https://noordigital.com
  * Text Domain:     blocks
  *
  * @package         noor
  */
+
+ require_once dirname(__FILE__) . '/src/blocks/accordion/accordion_callback.php';
+
+ // Register each block type
+function noor_register_block( $dir, $namespace, $assets ) {
+	
+	$blocks = new DirectoryIterator( $dir );
+
+	foreach( $blocks as $block ) {
+
+		if ( ! $block->isDot() ) {
+
+			$block_name = $block->getBaseName();
+
+			$callback = $block->getPath() . '/' . $block_name . '/' . $block_name . '_callback.php';
+
+			if ( file_exists( $callback ) ) {
+
+				// $assets['render_callback'] = $block . '_callback';
+			}
+
+			register_block_type( trailingslashit( $namespace ). $block_name, $assets );
+		}	
+	}
+}
 
 /**
  * Registers all block assets so that they can be enqueued through the block editor
@@ -20,6 +44,7 @@
 add_action( 'init', function () {
 
 	$dir = dirname( __FILE__ );
+
 	$script_asset_path = "$dir/build/index.asset.php";
 	
 	if ( ! file_exists( $script_asset_path ) ) {
@@ -27,74 +52,28 @@ add_action( 'init', function () {
 			'You need to run `npm start` or `npm run build` for the "noor/blocks" block first.'
 		);
 	}
+	
 	$index_js     = 'build/index.js';
 	$script_asset = require( $script_asset_path );
-	wp_register_script(
-		'noor-blocks-block-editor',
-		plugins_url( $index_js, __FILE__ ),
-		$script_asset['index.js']['dependencies'],
-		$script_asset['index.js']['version']
-	);
+
+	wp_register_script( 'noor-blocks-block-editor', plugins_url( $index_js, __FILE__ ), $script_asset['index.js']['dependencies'], $script_asset['index.js']['version'] );
+
 	wp_set_script_translations( 'noor-blocks-block-editor', 'blocks' );
 
 	$editor_css = 'build/index.css';
-	wp_register_style(
-		'noor-blocks-block-editor',
-		plugins_url( $editor_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
+	wp_register_style( 'noor-blocks-block-editor', plugins_url( $editor_css, __FILE__ ), [], filemtime( "$dir/$editor_css" ) );
 
 	$style_css = 'build/style-index.css';
-	wp_register_style(
-		'noor-blocks-block',
-		plugins_url( $style_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
+	wp_register_style( 'noor-blocks-block', plugins_url( $style_css, __FILE__ ), [], filemtime( "$dir/$style_css" ) );
 
-	register_block_type( 'noor/blocks', array(
+	noor_register_block( "$dir/src/blocks/", 'noor', [
 		'editor_script' => 'noor-blocks-block-editor',
 		'editor_style'  => 'noor-blocks-block-editor',
 		'style'         => 'noor-blocks-block',
-	) );
-
-	add_theme_support( 'disable-custom-colors' );
-
-	add_theme_support( 'editor-color-palette', [
-		[
-			'name' => 'Black',
-			'slug' => 'black',
-			'color' => '#000000'
-		],
-		[
-			'name' => 'Blackish',
-			'slug' => 'black-ish',
-			'color' => '#353535'
-		],
-		[
-			'name' => 'Primary',
-			'slug' => 'primary',
-			'color' => '#446B7E'
-		],
-		[
-			'name' => 'Secondary',
-			'slug' => 'secondary',
-			'color' => '#ECE0D1'
-		],
-		[
-			'name' => 'Secondary Light',
-			'slug' => 'secondary-light',
-			'color' => '#F5EFE8'
-		],
-		[
-			'name' => 'White',
-			'slug' => 'white',
-			'color' => '#FFFFFF'
-		]
 	]);
 });
 
+// Enqueue frontend assets
 add_action( 'wp_enqueue_scripts', function () {
 
 	if ( ! is_admin() && has_block( 'noor/accordion' ) ) {
@@ -107,12 +86,15 @@ add_action( 'wp_enqueue_scripts', function () {
 	}
 });
 
-add_filter( 'block_categories', function( $cat, $post ) {
+// Register block category
+add_filter( 'block_categories', function( $categories, $post ) {
 	return array_merge(
-		$cat,
-		[[
-			'slug' => 'noor-blocks',
-			'title' => 'Noor blocks'
-		]]
-		);
+		$categories,
+		[
+			[
+				'slug' => 'noor-collection',
+				'title' => 'Noor Collection'
+			]
+		]
+	);
 }, 10, 2);

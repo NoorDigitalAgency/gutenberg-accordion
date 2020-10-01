@@ -81,24 +81,53 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/blocks/accordion/assets/scripts/accordion.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/blocks/accordion/assets/accordion.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/blocks/accordion/assets/scripts/accordion.js":
-/*!**********************************************************!*\
-  !*** ./src/blocks/accordion/assets/scripts/accordion.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./src/blocks/accordion/assets/accordion.js":
+/*!**************************************************!*\
+  !*** ./src/blocks/accordion/assets/accordion.js ***!
+  \**************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-console.log('HEJ');
-document.addEventListener('click', function (event) {
-  if (event.target.matches('.noor-block-accordion')) {
-    console.log(event.target);
-  }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/helpers */ "./src/components/helpers.js");
+
+
+function Accordions(init) {
+  var accordions;
+  Object.assign(this, init);
+  console.log(this.accordions);
+}
+
+Object(_components_helpers__WEBPACK_IMPORTED_MODULE_0__["domLoaded"])(function (status) {
+  var accordions = document.querySelectorAll('.noor-block-accordion');
+  console.log(accordions); // new Accordions({ accordions });
 });
+
+/***/ }),
+
+/***/ "./src/components/helpers.js":
+/*!***********************************!*\
+  !*** ./src/components/helpers.js ***!
+  \***********************************/
+/*! exports provided: domLoaded */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "domLoaded", function() { return domLoaded; });
+function domLoaded(callback) {
+  if (document.readyState === 'complete') {
+    callback(document.readyState === 'complete');
+  } else {
+    window.addEventListener('DOMContentLoaded', callback(true));
+  }
+}
 
 /***/ })
 

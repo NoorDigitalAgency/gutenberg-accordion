@@ -1,7 +1,18 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-import { name, accordion } from './blocks/accordion/index'
+import * as accordion from './blocks/accordion/index'
 
 const prefix = 'noor/';
 
-registerBlockType( prefix + name, {...accordion} );
+const registerBlock = block => {
+
+	const {name, settings} = block;
+	
+	registerBlockType( prefix + name, settings );
+}
+
+const registerNoorBlocks = () => [
+	accordion,
+].forEach( block => registerBlock( block ) );
+
+registerNoorBlocks();

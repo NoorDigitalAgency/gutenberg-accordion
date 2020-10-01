@@ -2,8 +2,14 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' ),
       DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' ),
       path = require( 'path' );
 
-// Add entrypoint for fronend assets
-defaultConfig.entry.accordion = path.resolve( process.cwd(), 'src/blocks/accordion/assets/scripts', 'accordion.js');
+defaultConfig.entry = {
+  index: [
+    path.resolve( process.cwd(), 'src', 'index.js' ),
+    path.resolve( process.cwd(), 'src', 'style.scss' ),
+    path.resolve( process.cwd(), 'src', 'editor.scss' ),
+  ],
+  accordion: path.resolve( process.cwd(), 'src/blocks/accordion/assets', 'accordion.js' )
+};
 
 module.exports = {
   

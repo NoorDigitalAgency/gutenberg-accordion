@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["style-index"],{
 
-/***/ "./src/blocks/accordion/assets/styles/style.scss":
-/*!*******************************************************!*\
-  !*** ./src/blocks/accordion/assets/styles/style.scss ***!
-  \*******************************************************/
+/***/ "./src/style.scss":
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -163,7 +163,7 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push(["./src/index.js","style-index"]);
+/******/ 	deferredModules.push([0,"style-index"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
@@ -203,32 +203,6 @@ function _arrayWithHoles(arr) {
 }
 
 module.exports = _arrayWithHoles;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
 
 /***/ }),
 
@@ -359,17 +333,6 @@ module.exports = _unsupportedIterableToArray;
 
 /***/ }),
 
-/***/ "./src/blocks/accordion/assets/styles/editor.scss":
-/*!********************************************************!*\
-  !*** ./src/blocks/accordion/assets/styles/editor.scss ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./src/blocks/accordion/edit.js":
 /*!**************************************!*\
   !*** ./src/blocks/accordion/edit.js ***!
@@ -391,9 +354,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _components_radio_group__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/radio-group */ "./src/components/radio-group.js");
-/* harmony import */ var _assets_styles_editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/styles/editor.scss */ "./src/blocks/accordion/assets/styles/editor.scss");
-/* harmony import */ var _assets_styles_editor_scss__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_assets_styles_editor_scss__WEBPACK_IMPORTED_MODULE_6__);
-
 
 
 
@@ -527,31 +487,28 @@ function Edit(props) {
 /*!***************************************!*\
   !*** ./src/blocks/accordion/index.js ***!
   \***************************************/
-/*! exports provided: name, accordion */
+/*! exports provided: name, settings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "accordion", function() { return accordion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/styles/style.scss */ "./src/blocks/accordion/assets/styles/style.scss");
-/* harmony import */ var _assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_styles_style_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/blocks/accordion/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./save */ "./src/blocks/accordion/save.js");
-
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/accordion/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/accordion/save.js");
 
 
 
 
 var name = 'accordion';
-var accordion = {
+var settings = {
   title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Accordion', 'accordion'),
   description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Accordion block', 'blocks'),
-  category: 'noor-blocks',
+  category: 'noor-collection',
   icon: 'list-view',
   supports: {
     html: false
@@ -593,8 +550,8 @@ var accordion = {
   edit: Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__["withColors"])({
     textColor: 'color',
     backgroundColor: 'background-color'
-  })(_edit__WEBPACK_IMPORTED_MODULE_3__["default"]),
-  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
+  })(_edit__WEBPACK_IMPORTED_MODULE_2__["default"]),
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 };
 
 /***/ }),
@@ -691,6 +648,17 @@ var RadioGroup = function RadioGroup(_ref) {
 
 /***/ }),
 
+/***/ "./src/editor.scss":
+/*!*************************!*\
+  !*** ./src/editor.scss ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -700,21 +668,40 @@ var RadioGroup = function RadioGroup(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _blocks_accordion_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/accordion/index */ "./src/blocks/accordion/index.js");
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_accordion_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/accordion/index */ "./src/blocks/accordion/index.js");
 
 
 var prefix = 'noor/';
-Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])(prefix + _blocks_accordion_index__WEBPACK_IMPORTED_MODULE_2__["name"], _objectSpread({}, _blocks_accordion_index__WEBPACK_IMPORTED_MODULE_2__["accordion"]));
+
+var registerBlock = function registerBlock(block) {
+  var name = block.name,
+      settings = block.settings;
+  Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])(prefix + name, settings);
+};
+
+var registerNoorBlocks = function registerNoorBlocks() {
+  return [_blocks_accordion_index__WEBPACK_IMPORTED_MODULE_1__].forEach(function (block) {
+    return registerBlock(block);
+  });
+};
+
+registerNoorBlocks();
+
+/***/ }),
+
+/***/ 0:
+/*!***************************************************************!*\
+  !*** multi ./src/index.js ./src/style.scss ./src/editor.scss ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\index.js */"./src/index.js");
+__webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\style.scss */"./src/style.scss");
+module.exports = __webpack_require__(/*! C:\Users\Christoffer\Projects\Wordpress\Gutenberg\blocks\src\editor.scss */"./src/editor.scss");
+
 
 /***/ }),
 
