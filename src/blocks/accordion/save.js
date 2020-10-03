@@ -3,23 +3,35 @@ import { InnerBlocks, RichText, getColorClassName } from '@wordpress/block-edito
 
 export default function save( { attributes } ) {
 
-	const { textColor, backgroundColor } = attributes;
+	const { titleColor, titleBackground, contentBackground } = attributes;
 
-	const textColorClass = textColor != undefined ? getColorClassName('color', textColor) : '';
+	const titleColorClass = titleColor != undefined ? getColorClassName('color', titleColor) : '';
 
-	const backgroundColorClass = backgroundColor != undefined ? getColorClassName('background-color', backgroundColor) : '';
+	const titleBackgroundClass = titleBackground != undefined ? getColorClassName('background-color', titleBackground) : '';
+
+	const contentBackgroundClass = contentBackground != undefined ? getColorClassName('background-color', contentBackground) : '';
 	
 	return ( 
 		<>
-			<div className={`noor-block-accordion ${backgroundColorClass}`}>
+			<div 
+				id={`#${attributes.anchorContent}`}
+				className={`noor-block-accordion ${titleBackgroundClass}`} aria-expanded={attributes.initialState}
+			>
 				<RichText.Content 
-					className={`noor-block-accordion__title ${textColorClass}`}
+					className={`noor-block-accordion__title ${titleColorClass}`}
 					tagName={attributes.titleTag}
 					value={attributes.titleContent}
 				/>
-				<span className={`noor-block-accordion__icon dashicons dashicons-${attributes.initialState ? attributes.collapseIcon : attributes.expandIcon} ${textColorClass}`} area-hidden="true"></span>
+				<span 
+					className={`noor-block-accordion__icon dashicons dashicons-${attributes.expandIcon} ${titleColorClass}`} 
+					aria-hidden="true" data-state={!attributes.initialState}
+				></span>
+				<span 
+					className={`noor-block-accordion__icon dashicons dashicons-${attributes.collapseIcon} ${titleColorClass}`} 
+					aria-hidden="true" data-state={attributes.initialState}
+				></span>
 			</div>
-			<div id="accordion" className="noor-block-accordion__content" aria-expanded={attributes.initialState}>
+			<div className={`noor-block-accordion__content ${contentBackgroundClass}`}>
 				<InnerBlocks.Content />
 			</div>
 		</>

@@ -1,24 +1,26 @@
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
-import { Dashicon, PanelBody, ToggleControl } from '@wordpress/components'
+import { Dashicon, PanelBody, ToggleControl, __experimentalInputControl as InputControl } from '@wordpress/components'
 import { RadioGroup } from '../../components/radio-group'
 
 export default function Edit( props ) {
 	
-	const { textColor, setTextColor, backgroundColor, setBackgroundColor, className, attributes, setAttributes } = props;
+	const { titleColor, setTitleColor, titleBackground, setTitleBackground, contentBackground, setContentBackground, attributes, setAttributes } = props;
 	
 	const [expanded, setExpanded] = useState(false);
 
-	const textColorClass = textColor != undefined ? textColor.class : '';
+	const titleColorClass = titleColor != undefined ? titleColor.class : '';
 	
-	const backgroundColorClass = backgroundColor != undefined ? backgroundColor.class : '';
+	const titleBackgroundClass = titleBackground != undefined ? titleBackground.class : '';
+
+	const contentBackgroundClass = contentBackground != undefined ? contentBackground.class : '';
 
 	const titleTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 	const icons = {
-		expand: ['arrow-down', 'arrow-down-alt2', 'plus'],
-		collapse: ['arrow-up', 'arrow-up-alt2', 'minus']
+		expand: ['arrow-down', 'arrow-right', 'arrow-down-alt2', 'arrow-right-alt2', 'arrow-down-alt', 'arrow-right-alt', 'plus'],
+		collapse: ['arrow-up', 'arrow-up-alt2', 'minus', 'arrow-up-alt', 'no-alt']
 	}
 
 	const setTitleTag = event => setAttributes({ titleTag: event.target.value });
@@ -38,17 +40,22 @@ export default function Edit( props ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Toggle Settings')} initialOpen={true}>
+				<PanelBody title={__('Base Settings')} initialOpen={true}>
+					<label className="block-base-control__label"><strong>{__('Anchor title')}</strong></label>
+					<InputControl
+						value={attributes.anchorContent}
+						onChange={anchorContent => setAttributes({anchorContent})}
+					/>
+
+					<label className="block-base-control__label"><strong>{__('Initial state')}</strong></label>
 					<ToggleControl 
-						label="Initial state"
-						help={attributes.initialState ? 'Expanded' : 'Collapsed'}
+						label={attributes.initialState ? 'Expanded by default' : 'Collapsed by default'}
 						checked={attributes.initialState}
 						onChange={() => setAttributes({initialState: !attributes.initialState})}
 					/>
-				</PanelBody>
 
-				<PanelBody title={__('Size settings')} initialOpen={false}>
 					<RadioGroup 
+						label={__('Title size')}
 						onClick={setTitleTag} 
 						options={titleTags} 
 						initialChecked={attributes.titleTag} 
@@ -74,39 +81,49 @@ export default function Edit( props ) {
 				</PanelBody>
 				
 				<PanelColorSettings
-					title={__('Text color Settings')}
-					colorSettings={[{
-						value: textColor.color,
-						onChange: setTextColor,
-						label: __('Text Color')
-					}]}
+					title={__('Color settings')}
 					initialOpen={false}
-				/>
-
-				<PanelColorSettings
-					title={__('Background color Settings')}
-					colorSettings={[{
-						value: backgroundColor.color,
-						onChange: setBackgroundColor,
-						label: __('Background Color')
-					}]}
-					initialOpen={false}
+					colorSettings={[
+						{
+							value: titleColor.color,
+							onChange: setTitleColor,
+							label: __('Title text color')
+						}, 
+						{
+							value: titleBackground.color,
+							onChange: setTitleBackground,
+							label: __('Title background color')
+						},
+						{
+							value: contentBackground.color,
+							onChange: setContentBackground,
+							label: __('Content background color')
+						}
+					]}
 				/>
 			</InspectorControls>
 			
-			<div className={`noor-block-accordion ${backgroundColorClass}`} onClick={() => setExpanded(!expanded)}>
+			<div 
+				id={`#${attributes.anchorContent}`} 
+				className={`noor-block-accordion ${titleBackgroundClass}`} 
+				onClick={() => setExpanded(!expanded)} 
+				aria-expanded={`${attributes.initialState || expanded}`}
+			>
 				<RichText 
-					className={`noor-block-accordion__title ${textColorClass}`} 
+					className={`noor-block-accordion__title ${titleColorClass}`} 
 					tagName={attributes.titleTag}
 					value={attributes.titleContent}
 					formattingControls={['bold', 'italic', 'align']}
 					onChange={titleContent => setAttributes({titleContent})}
 				/>
-				<Dashicon icon={expanded ? attributes.collapseIcon : attributes.expandIcon} className={`noor-block-accordion__icon ${textColorClass}`} />
+				<Dashicon 
+					icon={expanded ? attributes.collapseIcon : attributes.expandIcon} 
+					className={`noor-block-accordion__icon ${titleColorClass}`} 
+				/>
 			</div>
-			<div className="noor-block-accordion__content" aria-expanded={`${attributes.initialState || expanded}`}>
+			<div className={`noor-block-accordion__content ${contentBackgroundClass}`}>
 				<InnerBlocks 
-					allowedBlocks={['core/paragraph', 'core/list']}
+					allowedBlocks={['core/paragraph', 'core/list', 'core/button']}
 					template={[['core/paragraph', {}]]}
 				/>
 			</div>
