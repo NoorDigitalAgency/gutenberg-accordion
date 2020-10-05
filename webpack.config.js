@@ -11,18 +11,24 @@ defaultConfig.entry = {
   accordion: path.resolve( process.cwd(), 'src/blocks/accordion/assets', 'accordion.js' )
 };
 
-module.exports = {
+module.exports = (env, argv) => {
+
+  const isDevelopment = () => argv.mode === 'development';
   
-  ...defaultConfig,
-  
-  plugins: [
-    ...defaultConfig.plugins.filter(plugin => 
-      plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'
-    ),
-    new DependencyExtractionWebpackPlugin({
-      injectPolyfill: true,
-      combineAssets: true,
-      combinedOutputFile: 'index.asset.php'
-    })
-  ]
+  const config = {
+    ...defaultConfig,
+    
+    plugins: [
+      ...defaultConfig.plugins.filter(plugin => 
+        plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'
+      ),
+      new DependencyExtractionWebpackPlugin({
+        injectPolyfill: true,
+        combineAssets: true,
+        combinedOutputFile: 'index.asset.php'
+      })
+    ]
+  }
+
+  return config;
 }
