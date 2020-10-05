@@ -1,4 +1,4 @@
-$blockpadding: 0 30px !default;
+$blockpadding: 0 2rem !default;
 $blockmargin: 1rem auto 0 !default;
 $titlemargin: .5rem 0 !default;
 
@@ -12,18 +12,33 @@ $titlemargin: .5rem 0 !default;
 	margin: $blockmargin !important;
 
 	&__title {
+
 		width: 100%;
 		margin: $titlemargin !important;	
 	}
 
 	&__icon {
+		
+		&[data-state="true"] {
 
+			display: block;
+		}
+
+		&[data-state="false"] {
+
+			display: none;
+		}
 	}
 
 	&__content {
 		
 		height: 0;
-		margin: 0 auto !important;
+		padding: $blockpadding;
 		overflow: hidden;
+	}
+
+	&[aria-expanded="true"] + #{$self}__content {
+
+		height: auto;
 	}
 }

@@ -214,26 +214,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var animate = function animate(isExpanded, starttime, element, maxheight, duration) {
-  var runtime = new Date().getTime() - starttime,
+var animate = function animate(args) {
+  var start = args.start,
+      element = args.element,
+      maxheight = args.maxheight,
+      duration = args.duration,
+      state = args.state;
+  var runtime = new Date().getTime() - start,
       progress = runtime / duration,
-      value = isExpanded ? maxheight - maxheight * Math.min(progress, 1) : maxheight * Math.min(progress, 1);
-  element.style.height = "".concat(value.toFixed(2), "px");
+      currHeight = state ? maxheight - maxheight * Math.min(progress, 1) : maxheight * Math.min(progress, 1);
+  element.style.height = "".concat(currHeight.toFixed(2), "px");
 
   if (runtime < duration) {
     requestAnimationFrame(function () {
-      return animate(isExpanded, starttime, element, maxheight, duration);
+      return animate(args);
     });
   }
 };
 
-function toggle(accordions) {
-  var attribute = 'aria-expanded',
-      sibling = this.nextElementSibling,
-      maxheight = sibling.scrollHeight,
-      isExpanded = maxheight === sibling.offsetHeight;
+function requestAnimation() {
+  var duration = 250,
+      start = new Date().getTime(),
+      element = this.nextElementSibling,
+      maxheight = element.scrollHeight,
+      state = maxheight === element.offsetHeight;
+  this.querySelectorAll('.dashicons').forEach(function (icon) {
+    return Object(_components_helpers__WEBPACK_IMPORTED_MODULE_1__["toggle"])(icon, 'data-state', ['false', 'true']);
+  });
   return requestAnimationFrame(function () {
-    return animate(isExpanded, new Date().getTime(), sibling, maxheight, 300);
+    return animate({
+      start: start,
+      element: element,
+      maxheight: maxheight,
+      duration: duration,
+      state: state
+    });
   });
 }
 
@@ -241,7 +256,7 @@ Object(_components_helpers__WEBPACK_IMPORTED_MODULE_1__["domLoaded"])(function (
   var accordions = document.querySelectorAll('.noor-block-accordion');
 
   _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(accordions).forEach(function (accordion) {
-    return accordion.addEventListener('click', toggle, true);
+    return accordion.addEventListener('click', requestAnimation, true);
   });
 });
 
@@ -251,12 +266,13 @@ Object(_components_helpers__WEBPACK_IMPORTED_MODULE_1__["domLoaded"])(function (
 /*!***********************************!*\
   !*** ./src/components/helpers.js ***!
   \***********************************/
-/*! exports provided: domLoaded */
+/*! exports provided: domLoaded, toggle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "domLoaded", function() { return domLoaded; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggle", function() { return toggle; });
 function domLoaded(callback) {
   if (document.readyState === 'complete') {
     callback(document.readyState === 'complete');
@@ -264,6 +280,9 @@ function domLoaded(callback) {
     window.addEventListener('DOMContentLoaded', callback(true));
   }
 }
+var toggle = function toggle(el, attribute, values) {
+  return el.setAttribute(attribute, el.getAttribute(attribute) === values[0] ? values[1] : values[0]);
+};
 
 /***/ })
 

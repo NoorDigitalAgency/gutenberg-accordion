@@ -7,3 +7,5 @@ export function domLoaded( callback ) {
     window.addEventListener( 'DOMContentLoaded', callback(true));
   }
 }
+
+export const toggle = ( el, attribute, values ) => el.setAttribute( attribute, el.getAttribute( attribute ) === values[0] ? values[1] : values[0] );

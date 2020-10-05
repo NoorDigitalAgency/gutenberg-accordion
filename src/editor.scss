@@ -9,9 +9,11 @@
 
 	&__content {
 		display: none;
+		height: auto;
+		max-height: 100%;
 	}
-	
-	& + [aria-expanded="true"] {
+
+	&[aria-expanded="true"] + &__content {
 		display: block;
 	}
- }
+}

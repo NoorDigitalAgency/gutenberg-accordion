@@ -1,34 +1,39 @@
-import { domLoaded } from '../../../components/helpers'
+import { domLoaded, toggle } from '../../../components/helpers'
 
-const animate = ( isExpanded, starttime, element, maxheight, duration ) => {
+const animate = args => {
 
-  const runtime = new Date().getTime() - starttime,
+  const { start, element, maxheight, duration, state } = args;
+
+  const runtime = new Date().getTime() - start,
         progress = runtime / duration,
-        value = isExpanded 
+        currHeight = state 
           ? maxheight - (maxheight * Math.min( progress, 1))
           : (maxheight * Math.min( progress, 1 ));
 
-  element.style.height = `${value.toFixed(2)}px`;
+  element.style.height = `${currHeight.toFixed(2)}px`;
 
   if ( runtime < duration ) {
 
-    requestAnimationFrame( () => animate( isExpanded, starttime, element, maxheight, duration ) );
+    requestAnimationFrame( () => animate( args ) );
   }
 }
 
-function toggle ( accordions ) {
+function requestAnimation () {
 
-  const attribute = 'aria-expanded',
-        sibling = this.nextElementSibling,
-        maxheight = sibling.scrollHeight,
-        isExpanded = maxheight === sibling.offsetHeight;
+  const duration = 250,
+        start = new Date().getTime(),
+        element = this.nextElementSibling,
+        maxheight = element.scrollHeight,
+        state = maxheight === element.offsetHeight;
 
-  return requestAnimationFrame( () => animate( isExpanded, new Date().getTime(), sibling, maxheight, 300 ) );
+  this.querySelectorAll('.dashicons').forEach(icon => toggle( icon, 'data-state', ['false', 'true'] ) );
+
+  return requestAnimationFrame(() => animate( { start, element, maxheight, duration, state } ));
 }
 
 domLoaded( () => {
   
   const accordions = document.querySelectorAll('.noor-block-accordion');
   
-  [...accordions].forEach( accordion => accordion.addEventListener( 'click', toggle, true ) );
+  [...accordions].forEach( accordion => accordion.addEventListener( 'click', requestAnimation, true ) );
 })

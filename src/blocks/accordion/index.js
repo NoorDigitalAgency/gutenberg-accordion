@@ -14,6 +14,10 @@ export const settings = {
 		html: false,
 	},
 	attributes: {
+		anchorContent: {
+			type: 'string',
+			default: ''
+		},
 		titleContent: {
 			type: 'string',
 			default: 'Example title...'
@@ -26,13 +30,17 @@ export const settings = {
 			type: 'boolean',
 			default: false
 		},
-		textColor: {
+		titleColor: {
 			type: 'string',
-			default: '#ECE0D1'
+			default: '#000000'
 		},
-		backgroundColor: {
+		titleBackground: {
 			type: 'string',
-			default: '#446B7E'
+			default: '#FFFFFF'
+		},
+		contentBackground: {
+			type: 'string',
+			default: '#FFFFFF'
 		},
 		expandIcon: {
 			type: 'string',
@@ -40,13 +48,17 @@ export const settings = {
 		},
 		collapseIcon: {
 			type: 'string',
-			default: 'arrow-down-alt2'
+			default: 'arrow-up-alt2'
 		},
 		iconAlignment: {
 			type: 'string',
 			default: 'right'
 		}
 	},
-	edit: withColors({textColor: 'color', backgroundColor: 'background-color'})( Edit ),
+	edit: withColors({
+		titleColor: 'color', 
+		titleBackground: 'background-color', 
+		contentBackground: 'background-color'
+	})( Edit ),
 	save,
 }
