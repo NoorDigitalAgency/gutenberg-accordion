@@ -2,7 +2,7 @@
 	"name": "noor/blocks",
 	"title": "Blocks",
 	"category": "widgets",
-	"icon": "smiley",
+	"icon": "list-view",
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"textdomain": "blocks",
 	"supports": {
