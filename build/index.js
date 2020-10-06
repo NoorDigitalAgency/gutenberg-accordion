@@ -724,9 +724,9 @@ registerNoorBlocks();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/index.js */"./src/index.js");
-__webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/style.scss */"./src/style.scss");
-module.exports = __webpack_require__(/*! /Users/christofferohman/Projects/gutenberg-accordion/src/editor.scss */"./src/editor.scss");
+__webpack_require__(/*! /Users/christofferohman/projects/gutenberg-accordion/src/index.js */"./src/index.js");
+__webpack_require__(/*! /Users/christofferohman/projects/gutenberg-accordion/src/style.scss */"./src/style.scss");
+module.exports = __webpack_require__(/*! /Users/christofferohman/projects/gutenberg-accordion/src/editor.scss */"./src/editor.scss");
 
 
 /***/ }),

@@ -1,0 +1,19 @@
+{
+  "name": "noor/gutenberg-accordion",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/NoorDigitalAgency/gutenberg-accordion",
+  "license": "MIT",
+  "description": "Custom blocks",
+  "authors": [
+    {
+      "name": "Christoffer Öhman",
+      "email": "christoffer.ohman@noor.se",
+      "homepage": "https://noordigital.com"
+    }
+  ],
+  "keywords": ["gutenberg", "blocks"],
+  "require": {
+    "php": ">=7.1",
+    "yahnis-elsts/plugin-update-checker": "^4.10"
+  }
+}

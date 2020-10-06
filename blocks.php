@@ -10,6 +10,23 @@
  * @package         noor
  */
 
+ // Require composer autoloader
+require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
+/**
+ * Plugin updater to push updates from github to wp admin interface
+ */
+$plugin_updater = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/NoorDigitalAgency/gutenberg-accordion',
+	__FILE__,
+	'noor/gutenberg-accordion'
+);
+
+// Stable branch master
+// $plugin_updater->setBranch( 'master' );
+
+$plugin_updater->getVcsApi()->enableReleaseAssets();
+
  // Register each block type
 function noor_register_block( $dir, $namespace, $assets ) {
 	
