@@ -31,16 +31,13 @@ export const settings = {
 			default: false
 		},
 		titleColor: {
-			type: 'string',
-			default: '#000000'
+			type: 'string'
 		},
 		titleBackground: {
-			type: 'string',
-			default: '#FFFFFF'
+			type: 'string'
 		},
 		contentBackground: {
-			type: 'string',
-			default: '#FFFFFF'
+			type: 'string'
 		},
 		expandIcon: {
 			type: 'string',
