@@ -1,15 +1,2 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.noor-block-accordion__content {
-  display: none;
-  height: auto;
-  max-height: 100%; }
+.noor-block-accordion__content{display:none;height:auto;max-height:100%}.noor-block-accordion[aria-expanded="true"]+.noor-block-accordion__content{display:block}
 
-.noor-block-accordion[aria-expanded="true"] + .noor-block-accordion__content {
-  display: block; }
-
-
-/*# sourceMappingURL=index.css.map*/

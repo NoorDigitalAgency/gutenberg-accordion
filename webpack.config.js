@@ -5,6 +5,7 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' ),
 defaultConfig.entry = {
   index: [
     path.resolve( process.cwd(), 'src', 'index.js' ),
+    path.resolve( process.cwd(), 'src/extended/index.js' ),
     path.resolve( process.cwd(), 'src', 'style.scss' ),
     path.resolve( process.cwd(), 'src', 'editor.scss' ),
   ],
