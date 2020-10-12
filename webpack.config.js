@@ -6,8 +6,8 @@ defaultConfig.entry = {
   index: [
     path.resolve( process.cwd(), 'src', 'index.js' ),
     path.resolve( process.cwd(), 'src/extended/index.js' ),
-    path.resolve( process.cwd(), 'src', 'style.scss' ),
-    path.resolve( process.cwd(), 'src', 'editor.scss' ),
+    path.resolve( process.cwd(), 'src/styles', 'style.scss' ),
+    path.resolve( process.cwd(), 'src/styles', 'editor.scss' ),
   ],
   accordion: path.resolve( process.cwd(), 'src/blocks/accordion/assets', 'accordion.js' )
 };

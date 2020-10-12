@@ -1,0 +1,33 @@
+//*** VARIABLES
+$blockpadding: 0 2rem !default;
+$blockmargin: 1rem auto 0 !default;
+$titlemargin: .5rem 0 !default;
+
+//*** CORE/BUTTON
+$icons: (
+	"arrow-right-alt": "\f344",
+	"arrow-right-alt2": "\f345",
+	"arrow-left-alt": "\f340",
+	"arrow-left-alt2": "\f341"
+) !default;
+
+@each $name, $value in $icons {
+
+	.has-icon-#{$name} {
+		.wp-block-button__link::after {
+			content: $value;
+			font: 400 20px/1 dashicons;
+			padding: 8px 0 0 8px;
+			height: 36px;
+			width: 20px;
+			display: inline-block;
+			transition: padding .25s ease-in-out;
+		}
+
+		&:hover {
+			.wp-block-button__link::after {
+				padding-left: 14px;
+			}
+		}
+	}
+}

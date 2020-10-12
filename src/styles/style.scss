@@ -1,7 +1,6 @@
-$blockpadding: 0 2rem !default;
-$blockmargin: 1rem auto 0 !default;
-$titlemargin: .5rem 0 !default;
+@import 'common';
 
+//*** ACCORDION
 .noor-block-accordion {
 
 	$self: &;
