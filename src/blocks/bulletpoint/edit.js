@@ -4,7 +4,7 @@ import { PanelBody, Button, ResponsiveWrapper  } from '@wordpress/components'
 import { Fragment } from '@wordpress/element'
 
 export default function Edit( props ) {
-  console.log(props)
+
   const {backgroundColor, setBackgroundColor, attributes, setAttributes, className} = props;
 
   const { align, mediaId } = attributes;
@@ -34,29 +34,31 @@ export default function Edit( props ) {
 
       <InspectorControls>
         <PanelBody title={__( 'Image settings' )} initialOpen={false}>
-          <MediaUploadCheck>
-            <MediaUpload
-              onSelect={onSelectMedia}
-              value={mediaId}
-              allowedTypes={['image']}
-              render={({open}) => (
-                <Button
-                  className={mediaId == 0 ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview'}
-                  onClick={open}
-                >
-                  {mediaId == 0 && __( 'Choose an image' )}
-                  {props.media != undefined && 
-						        <ResponsiveWrapper
-								  		naturalWidth={ props.media.media_details.width }
-											naturalHeight={ props.media.media_details.height }
-							    	>
-									    <img src={props.media.source_url} />
-										</ResponsiveWrapper>
-                  }
-                </Button>
-              )}
-            />
-          </MediaUploadCheck>
+          <div className="editor-post-featured-image">
+            <MediaUploadCheck>
+              <MediaUpload
+                onSelect={onSelectMedia}
+                value={mediaId}
+                allowedTypes={['image']}
+                render={({open}) => (
+                  <Button
+                    className={mediaId == 0 ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview'}
+                    onClick={open}
+                  >
+                    {mediaId == 0 && __( 'Choose an image' )}
+                    {props.media != undefined && 
+                      <ResponsiveWrapper
+                        naturalWidth={ props.media.media_details.width }
+                        naturalHeight={ props.media.media_details.height }
+                      >
+                        <img src={props.media.source_url} />
+                      </ResponsiveWrapper>
+                    }
+                  </Button>
+                )}
+              />
+            </MediaUploadCheck>
+          </div>
         </PanelBody>
         <PanelColorSettings 
           title={__( 'Colot settings' )}
