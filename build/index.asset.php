@@ -1,0 +1,1 @@
+<?php return array('index.js' => array('dependencies' => array('wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-hooks', 'wp-i18n', 'wp-polyfill'), 'version' => '8615cfa1f2ce29ca606026d413243acb'), 'accordion.js' => array('dependencies' => array('wp-polyfill'), 'version' => '787c70681cd515f09219444213a9f808'));
