@@ -8,24 +8,48 @@ $icons: (
 	"arrow-right-alt": "\f344",
 	"arrow-right-alt2": "\f345",
 	"arrow-left-alt": "\f340",
-	"arrow-left-alt2": "\f341"
+	"arrow-left-alt2": "\f341",
+	"clock": "\f469"
 ) !default;
 
 @each $name, $value in $icons {
 
 	.has-icon-#{$name} {
+
+		.wp-block-button__link::before,
 		.wp-block-button__link::after {
-			display: inline-block;
-			content: $value;
-			padding-left: 8px;
+
+			display: none;
 			font-family: 'dashicons';
 			font-size: 20px;
 			vertical-align: middle;
-			transition: padding .25s ease-in-out;
+		}
+
+		&.has-left-icon {
+
+			.wp-block-button__link::before {
+				
+				display: inline-block;
+				content: $value;
+				padding-right: 8px;
+			}
+		}
+
+		&.has-right-icon {
+
+			.wp-block-button__link::after {
+
+				display: inline-block;
+				content: $value;
+				padding-left: 8px;
+				transition: padding .25s ease-in-out;
+			}
 		}
 
 		&:hover {
+
 			.wp-block-button__link::after {
+
 				padding-left: 14px;
 			}
 		}
