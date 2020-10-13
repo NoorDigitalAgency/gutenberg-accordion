@@ -6,7 +6,7 @@
 
 @import 'common';
 
- //*** ACCORDION
+ //*** NOOR/ACCORDION
  .noor-block-accordion {
 
 	&__content {
@@ -18,4 +18,9 @@
 	&[aria-expanded="true"] + &__content {
 		display: block;
 	}
+}
+
+//*** NOOR/BULLET-POINT
+.components-responsive-wrapper__content {
+	width: auto;
 }

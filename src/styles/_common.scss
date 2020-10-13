@@ -78,9 +78,18 @@ $icons: (
 	
 	&__point {
 
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		width: 87px;
 		height: 87px;
 		border-radius: 50%;
 		overflow: hidden;
+	}
+
+	&__text-content {
+
+		margin: 0 !important;
 	}
 }
