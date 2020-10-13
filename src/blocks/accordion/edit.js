@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState } from '@wordpress/element'
+import { Fragment, useState } from '@wordpress/element'
 import { InspectorControls, InnerBlocks, RichText, PanelColorSettings } from '@wordpress/block-editor'
 import { Dashicon, PanelBody, ToggleControl, __experimentalInputControl as InputControl } from '@wordpress/components'
 import { RadioGroup } from '../../components/radio-group'
@@ -38,7 +38,7 @@ export default function Edit( props ) {
 	}
 
 	return (
-		<>
+		<Fragment>
 			<InspectorControls>
 				<PanelBody title={__('Base Settings')} initialOpen={true}>
 					<label className="block-base-control__label"><strong>{__('Anchor title')}</strong></label>
@@ -127,6 +127,6 @@ export default function Edit( props ) {
 					template={[['core/paragraph', {}]]}
 				/>
 			</div>
-		</>
+		</Fragment>
 	);
 }

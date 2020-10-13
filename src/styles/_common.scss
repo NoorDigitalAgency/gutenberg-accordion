@@ -55,3 +55,32 @@ $icons: (
 		}
 	}
 }
+
+//*** NOOR/BULLET-POINT
+.noor-block-bullet-point {
+	display: flex;
+	width: 100%;
+
+	&.has-align-center {
+
+		justify-content: center;
+	}
+
+	&.has-align-right {
+
+		justify-content: flex-end;
+	}
+
+	&.has-align-left {
+
+		justify-content: flex-start;
+	}
+	
+	&__point {
+
+		width: 87px;
+		height: 87px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+}
