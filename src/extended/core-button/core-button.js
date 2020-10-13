@@ -1,10 +1,9 @@
 import { __ } from '@wordpress/i18n'
 import { createHigherOrderComponent } from '@wordpress/compose'
-import { Fragment, useState } from '@wordpress/element'
+import { Fragment } from '@wordpress/element'
 import { InspectorControls } from '@wordpress/block-editor'
 import { PanelBody, ToggleControl } from '@wordpress/components'
 import { RadioGroup } from '../../components/radio-group'
-import classnames from 'classnames'
 
 const iconControlOptions = [
   'arrow-right-alt',
