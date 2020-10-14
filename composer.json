@@ -1,12 +1,12 @@
 {
-  "name": "noor/gutenberg-accordion",
+  "name": "noor/gutenberg-blocks",
   "type": "wordpress-plugin",
-  "homepage": "https://github.com/NoorDigitalAgency/gutenberg-accordion",
+  "homepage": "https://github.com/NoorDigitalAgency/gutenberg-blocks",
   "license": "MIT",
-  "description": "Custom blocks",
+  "description": "Collection of custom blocks",
   "authors": [
     {
-      "name": "Christoffer Öhman",
+      "name": "Noor Digital Agency",
       "email": "christoffer.ohman@noor.se",
       "homepage": "https://noordigital.com"
     }
