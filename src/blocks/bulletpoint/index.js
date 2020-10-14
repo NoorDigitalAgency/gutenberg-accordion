@@ -64,7 +64,7 @@ export const settings = {
 				<div className={`noor-block-bullet-point__point ${backgroundColorClass}`}>
 					{attributes.useMedia && attributes.mediaId != 0 
 						? <img src={attributes.mediaUrl} /> 
-						: <h3 class={`noor-block-bullet-point__text-content ${colorClass}`}>{attributes.mediaInput}</h3>
+						: <h3 className={`noor-block-bullet-point__text-content ${colorClass}`}>{attributes.mediaInput}</h3>
 					}
 				</div>
 			</div>
