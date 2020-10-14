@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:     Blocks
+ * Plugin Name:     Noor Blocks
  * Description:     Collection of custom blocks.
  * Version:         0.1.0
- * Author:          Noor
+ * Author:          Noor Digital Agency
  * Author URI:      https://noordigital.com
  * Text Domain:     blocks
  *
@@ -17,9 +17,9 @@ require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
  * Plugin updater to push updates from github to wp admin interface
  */
 $plugin_updater = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/NoorDigitalAgency/gutenberg-accordion',
+	'https://github.com/NoorDigitalAgency/gutenberg-blocks',
 	__FILE__,
-	'noor/gutenberg-accordion'
+	'noor/gutenberg-blocks'
 );
 
 // Stable branch master
