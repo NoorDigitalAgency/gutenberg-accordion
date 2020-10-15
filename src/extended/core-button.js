@@ -3,7 +3,7 @@ import { createHigherOrderComponent } from '@wordpress/compose'
 import { Fragment } from '@wordpress/element'
 import { InspectorControls } from '@wordpress/block-editor'
 import { PanelBody, ToggleControl } from '@wordpress/components'
-import { RadioGroup } from '../../components/radio-group'
+import { RadioGroup } from '../components/radio-group'
 
 const iconControlOptions = [
   'arrow-right-alt',
