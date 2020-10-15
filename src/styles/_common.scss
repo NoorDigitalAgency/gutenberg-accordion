@@ -39,6 +39,7 @@ $icons: (
 
 			.wp-block-button__link::after {
 
+				position: relative;
 				display: inline-block;
 				content: $value;
 				right: 0;
