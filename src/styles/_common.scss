@@ -41,8 +41,9 @@ $icons: (
 
 				display: inline-block;
 				content: $value;
+				right: 0;
 				padding-left: 8px;
-				transition: padding .25s ease-in-out;
+				transition: right .25s ease-in-out;
 			}
 		}
 
@@ -50,7 +51,7 @@ $icons: (
 
 			.wp-block-button__link::after {
 
-				padding-left: 14px;
+				right: -6px;
 			}
 		}
 	}
