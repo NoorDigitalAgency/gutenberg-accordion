@@ -31,7 +31,7 @@ export const withBackgroundColor = compose(
 
   const {backgroundColor, setBackgroundColor} = props;
 
-  props.setAttributes({ className: backgroundColor != undefined ? backgroundColor.class : '' });
+  props.setAttributes({ className: backgroundColor != undefined ? backgroundColor.class + ' has-background' : '' });
 
   return (
     <Fragment>
