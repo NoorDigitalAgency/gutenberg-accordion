@@ -6,10 +6,6 @@ addFilter( 'blocks.registerBlockType', 'noor/gutenberg-blocks/custom-attributes'
 
 addFilter( 'editor.BlockEdit', 'noor/gutenberg-blocks/custom-control', withIcon );
 
-// addFilter( 'blocks.getSaveContent.extraProps', 'noor/gutenberg-blocks/custom-props', addExtraProps );
-
 addFilter( 'blocks.registerBlockType', 'noor/gutenberg-blocks/custom-attributes', addBackgroundColor );
 
 addFilter( 'editor.BlockEdit', 'noor/gutenberg-blocks/custom-control', withBackgroundColor );
-
-// addFilter( 'blocks.getSaveContent.extraProps', 'noor/gutenberg-blocks/custom-props', applyBackgroundColor );

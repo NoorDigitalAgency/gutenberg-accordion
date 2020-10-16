@@ -10,11 +10,11 @@ export default function Edit( props ) {
 	
 	const [expanded, setExpanded] = useState(false);
 
-	const titleColorClass = titleColor != undefined ? titleColor.class : '';
+	const titleColorClass = titleColor.class != undefined ? titleColor.class : '';
 	
-	const titleBackgroundClass = titleBackground != undefined ? titleBackground.class : '';
+	const titleBackgroundClass = titleBackground.class != undefined ? titleBackground.class : '';
 
-	const contentBackgroundClass = contentBackground != undefined ? contentBackground.class : '';
+	const contentBackgroundClass = contentBackground.class != undefined ? contentBackground.class : '';
 
 	const titleTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 

@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n'
 import { createHigherOrderComponent } from '@wordpress/compose'
 import { Fragment } from '@wordpress/element'
-import { withColors, InspectorControls, PanelColorSettings } from '@wordpress/block-editor'
+import { withColors, InspectorControls, PanelColorSettings, getColorClassName } from '@wordpress/block-editor'
 import { compose } from '@wordpress/compose'
 
 export const addBackgroundColor = (settings,  name) => {
@@ -31,7 +31,7 @@ export const withBackgroundColor = compose(
 
   const {backgroundColor, setBackgroundColor} = props;
 
-  props.setAttributes({ className: backgroundColor != undefined ? backgroundColor.class + ' has-background' : '' });
+  props.setAttributes({ className: backgroundColor.class != undefined ? backgroundColor.class + ' has-background' : '' });
 
   return (
     <Fragment>
@@ -44,7 +44,7 @@ export const withBackgroundColor = compose(
             {
               value: backgroundColor.color,
               onChange: setBackgroundColor,
-              label: __('Title text color')
+              label: __('Column background color')
             }
           ]}
         />

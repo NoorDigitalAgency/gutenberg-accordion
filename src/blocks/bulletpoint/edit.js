@@ -9,9 +9,9 @@ export default function Edit( props ) {
 
   const { align, mediaId } = attributes;
 
-  const colorClass = color != undefined ? color.class : '';
+  const colorClass = color.class != undefined ? color.class : '';
 
-  const backgroundColorClass = backgroundColor != undefined ? backgroundColor.class : '';
+  const backgroundColorClass = backgroundColor.class != undefined ? backgroundColor.class : '';
 
   const removeMedia = () => {
 		props.setAttributes({
