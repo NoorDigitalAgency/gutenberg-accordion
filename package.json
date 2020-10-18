@@ -12,7 +12,7 @@
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
 		"packages-update": "wp-scripts packages-update",
-		"pre-release": "./pre-release.sh"
+		"release": "./release.sh"
 	},
 	"repository": {
 		"type": "git",
