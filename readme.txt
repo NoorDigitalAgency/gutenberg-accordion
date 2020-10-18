@@ -1,5 +1,5 @@
 === Blocks ===
-Contributors:      The WordPress Contributors
+Contributors:
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.4.1
@@ -8,34 +8,21 @@ Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example block written with ESNext standard and JSX support – build step required.
+Collection of custom blocks created by Noor Digital Agency.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+This is a collection of custom blocks and customized core/blocks to fit the development for Noor Digital Agency
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
 
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/blocks` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+1. Visit [https://github.com/NoorDigitalAgency/gutenberg-blocks/releases/tag/v1.0.1](https://github.com/NoorDigitalAgency/gutenberg-blocks/releases/tag/v1.0.1) and download zip
+2. Upload zip file in wp plugin uploader
+3. Install
 
 
 == Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
 
@@ -47,7 +34,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 0.1.0 =
+= 1.0.1 =
 * Release
 
 == Arbitrary section ==
