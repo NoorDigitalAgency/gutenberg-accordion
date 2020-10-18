@@ -19,7 +19,6 @@ $package_name = ltrim( $package->name, '@');
 
 $github_repo = substr( $package->homepage, 0, strpos( $package->homepage, '#') );
 
-var_dump('<pre>', $package_name, '</pre>');
 /**
  * Plugin updater to push updates from github to wp admin interface
  */
