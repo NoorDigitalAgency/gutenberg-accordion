@@ -83,7 +83,7 @@ export const withIcon = createHigherOrderComponent( BlockEdit => props => {
   }
 
   setIcon( icon );
-        
+  
   return (
     <Fragment>  
       <BlockEdit { ...props } />

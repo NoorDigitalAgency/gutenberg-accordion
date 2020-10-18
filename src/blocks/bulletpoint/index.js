@@ -4,13 +4,6 @@ import { getColorClassName } from '@wordpress/block-editor'
 import { compose } from '@wordpress/compose'
 import { withSelect } from '@wordpress/data'
 import Edit from './edit';
-// import save from './save';
-
-const BulletPoint = compose(
-	withColors({ color: 'color', backgroundColor: 'background-color' }), 
-	withSelect((select, props) => {
-		return { media: props.attributes.mediaId ? select('core').getMedia(props.attributes.mediaId) : undefined}
-	}))( Edit );
 
 export const name = 'bullet-point';
 
@@ -50,7 +43,11 @@ export const settings = {
 			default: ''
 		}
 	},
-  edit: (props) => <BulletPoint {...props} />,
+  edit: compose(
+		withColors({ color: 'color', backgroundColor: 'background-color' }), 
+		withSelect((select, props) => {
+			return { media: props.attributes.mediaId ? select('core').getMedia(props.attributes.mediaId) : undefined}
+		}))( Edit ),
   save: ({ attributes }) => {
 
 		const {color, backgroundColor, align} = attributes;
