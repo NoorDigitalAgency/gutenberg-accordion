@@ -4,6 +4,8 @@ import * as accordion from './blocks/accordion/index'
 
 import * as bulletPoint from './blocks/bulletpoint/index'
 
+import * as googleMap from './blocks/google-map/index'
+
 import { addFilter } from '@wordpress/hooks'
 
 import { 
@@ -13,7 +15,7 @@ import {
 
 import { 
   addBackgroundColor,
-  withBackgroundColor 
+  withBackgroundColor,
 } from './core-blocks/core-column'
 
 const prefix = 'noor/';
@@ -27,7 +29,8 @@ const registerBlock = block => {
 
 const registerNoorBlocks = () => [
 	accordion,
-	bulletPoint,
+  bulletPoint,
+  googleMap
 ].forEach( block => registerBlock( block ) );
 
 registerNoorBlocks();

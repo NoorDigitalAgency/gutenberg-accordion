@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Noor Blocks
  * Description:     Collection of custom blocks.
- * Version: 				1.0.3
+ * Version: 				1.0.4
  * Author:          Noor Digital Agency
  * Author URI:      https://noordigital.com
  * Text Domain:     blocks
@@ -12,6 +12,9 @@
 
  // Require composer autoloader
 require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
+// Require settings page for google map api key
+require plugin_dir_path( __FILE__ ) . 'includes/settings.php';
 
 $package = json_decode( file_get_contents( __DIR__ . '/package.json' ), false );
 
@@ -78,6 +81,8 @@ add_action( 'init', function () {
 	$script_asset = require( $script_asset_path );
 
 	wp_register_script( 'noor-blocks-block-editor', plugins_url( $index_js, __FILE__ ), $script_asset['index.js']['dependencies'], $script_asset['index.js']['version'] );
+
+	wp_localize_script( 'noor-blocks-block-editor', 'options', get_option( 'map_settings' ) );
 
 	wp_set_script_translations( 'noor-blocks-block-editor', 'blocks' );
 
