@@ -41,6 +41,8 @@ echo
 
 npm run build
 
+git add .
+
 echo
 echo "-----------------------------------------------"
 echo
