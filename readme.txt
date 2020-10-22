@@ -3,7 +3,7 @@ Contributors:
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.4.1
-Stable tag:        1.0.7
+Stable tag:        1.1.0
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -42,6 +42,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * Release 1.0.5
 
 1. added new block map-block to use google maps in editor
+
+== 1.1.0 ==
+1. Google map block fixed
 
 == Arbitrary section ==
 

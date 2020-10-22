@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n'
-import { Fragment, useState } from '@wordpress/element'
+import { Fragment } from '@wordpress/element'
 import { InspectorControls } from '@wordpress/block-editor'
 import { RangeControl, PanelBody, __experimentalInputControl as InputControl } from '@wordpress/components'
 
@@ -12,28 +12,14 @@ export default function Edit ( props ) {
   const { attributes, setAttributes } = props;
 
   const { width, height, zoom, address } = attributes;
-
-  const [place, setPlace] = useState({...address});
   
-  const getPlace = () => {
-    
-    const currPlace = Object.values(place).filter(line => line != '');
+  const getaddress = Object.values(address).filter(line => line != '');
+  
+  const queryString = getaddress.reduce((acc, curr, i) => acc + ' ' + curr, '').trim().toLowerCase();
 
-    setAttributes({ address: currPlace });
+  const getSrc = `${srcBase + googleAPIKey}&q=${encodeURI(queryString)}&zoom=${zoom}`;
 
-    return currPlace;
-  }
-
-  const queryString = getPlace().reduce((acc, curr) => acc + encodeURI( curr ), '');
-
-  const getSrc = () => {
-
-    const src = `${srcBase + googleAPIKey}&q=${queryString}&zoom=${zoom}`;
-
-    setAttributes({ src });
-
-    return src;
-  }
+  setAttributes({ src: getSrc });
 
   const styles = {
     width: width + '%',
@@ -70,23 +56,23 @@ export default function Edit ( props ) {
         <PanelBody title={__( 'Map Location' )} initialOpen={true}>
           <label className="block-base-control__label"><strong>{__('Street Address')}</strong></label>
           <InputControl 
-            value={place.street}
-            onChange={street => setPlace({ ...place, street })}
+            value={address.street}
+            onChange={street => setAttributes({ address: { ...address, street } })}
           />
           <label className="block-base-control__label"><strong>{__('Postal Code/Zip')}</strong></label>
           <InputControl 
-            value={place.zip}
-            onChange={zip => setPlace({ ...place, zip })}
+            value={address.zip}
+            onChange={zip => setAttributes({ address: { ...address, zip } })}
           />
           <label className="block-base-control__label"><strong>{__('City')}</strong></label>
           <InputControl 
-            value={place.city}
-            onChange={city => setPlace({ ...place, city })}
+            value={address.city}
+            onChange={city => setAttributes({ address: { ...address, city } })}
           />
           <label className="block-base-control__label"><strong>{__('Country')}</strong></label>
           <InputControl 
-            value={place.country}
-            onChange={country => setPlace({ ...place, country })}
+            value={address.country}
+            onChange={country => setAttributes({ address: { ...address, country } })}
           />
         </PanelBody>
       </InspectorControls>
@@ -94,7 +80,7 @@ export default function Edit ( props ) {
       <div className="noor-block-google-map" style={styles}>
         {
           googleAPIKey != ''
-            ? <iframe width="361" height="160" src={getSrc()} frameBorder="0" allowFullScreen />
+            ? <iframe width="361" height="160" src={getSrc} frameBorder="0" allowFullScreen />
             : <p>{__( 'Please provide API key in settings' )}</p>
         }
       </div>

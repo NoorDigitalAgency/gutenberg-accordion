@@ -19,11 +19,11 @@ export const settings = {
     },
     width: {
       type: 'number',
-      default: 361
+      default: 100
     },
     height: {
       type: 'number',
-      default: 160
+      default: 75
     },
     address: {
       type: 'object',
@@ -43,8 +43,10 @@ export const settings = {
     
     const {width, height, src } = props.attributes;
 
+    props.className = 'noor-block-google-map';
+
     return (
-      <div className="noor-block-google-map" style={{width: `${width}%`, height: `${height}%`}}>
+      <div className={props.className} style={{width: `${width}%`, paddingBottom: `${height}%`}}>
         <iframe width="361" height="160" frameBorder="0" src={src} allowFullScreen></iframe>
       </div>
     )
