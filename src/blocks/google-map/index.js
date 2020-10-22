@@ -25,18 +25,14 @@ export const settings = {
       type: 'number',
       default: 160
     },
-    street: {
-      type: 'string'
-    },
-    zip: {
-      type: 'string'
-    },
-    city: {
-      type: 'string'
-    },
-    country: {
-      type: 'string',
-      default: 'sweden'
+    address: {
+      type: 'object',
+      default: {
+        street: '',
+        zip: '',
+        city: '',
+        country: 'sweden'
+      }
     },
     src: {
       type: 'string'
@@ -48,8 +44,8 @@ export const settings = {
     const {width, height, src } = props.attributes;
 
     return (
-      <div>
-        <iframe width={width} height={height} frameBorder="0" src={src} allowFullScreen></iframe>
+      <div className="noor-block-google-map" style={{width: `${width}%`, height: `${height}%`}}>
+        <iframe width="361" height="160" frameBorder="0" src={src} allowFullScreen></iframe>
       </div>
     )
   }
