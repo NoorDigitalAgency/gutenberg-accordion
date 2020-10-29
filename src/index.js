@@ -8,6 +8,12 @@ import * as googleMap from './blocks/google-map/index'
 
 import { addFilter } from '@wordpress/hooks'
 
+import { __ } from '@wordpress/i18n'
+import { createHigherOrderComponent } from '@wordpress/compose'
+import { Fragment } from '@wordpress/element'
+import { InspectorControls } from '@wordpress/block-editor'
+import { PanelBody, ToggleControl } from '@wordpress/components'
+
 import { 
   addInlineIconAttribute,
   withIcon
@@ -34,6 +40,69 @@ const registerNoorBlocks = () => [
 ].forEach( block => registerBlock( block ) );
 
 registerNoorBlocks();
+
+const mediaQueryControl = (settings, name) => {
+
+  Object.assign(settings.attributes, {
+    mediaControl: {
+      type: 'boolean',
+      default: true
+    }
+  });
+
+  return settings;
+}
+
+const mediaControl =   createHigherOrderComponent( BlockEdit => props => {
+
+  return (
+    <Fragment>
+      <BlockEdit {...props} />
+
+      <InspectorControls>
+        <PanelBody
+          title={ __( 'Mobile View Control' ) }
+          initialOpen={ true }
+        > 
+          <ToggleControl
+            label={__('Display on mobile')}
+            checked={props.attributes.mediaControl}
+            onChange={mediaControl => props.setAttributes({ mediaControl })}
+          />
+        </PanelBody>
+      </InspectorControls>
+    </Fragment>
+  );
+}, 'mediaControl');
+
+const mediaExtraProps = ( props, blockType, attributes ) => {
+  
+  if ( ! attributes.mediaControl ) {
+
+    props.className = props.className + ' on-media-hide';
+  }
+
+  return props;
+}
+
+// MEDIA DISPLAY SWITCH
+addFilter(
+  'blocks.registerBlockType',
+  'noor/gutenberg-blocks/custom-attributes',
+  mediaQueryControl
+);
+
+addFilter( 
+  'editor.BlockEdit', 
+  'noor/gutenberg-blocks/custom-control', 
+  mediaControl 
+);
+
+addFilter(
+  'blocks.getSaveContent.extraProps',
+  'noor/gutenberg-blocks/extraProps',
+  mediaExtraProps
+);
 
 // CORE/BUTTON
 addFilter( 
