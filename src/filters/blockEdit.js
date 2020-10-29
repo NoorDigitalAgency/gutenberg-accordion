@@ -68,7 +68,7 @@ export const blockEdit = compose(
 
       const align = alignIcon ? 'has-left-icon' : 'has-right-icon';
 
-      const iconName = useIcon && icon !== '' ? `has-icon-${icon}` : undefined;
+      const iconName = useIcon && icon !== '' ? `has-icon-${icon}` : '';
 
       const className = align + ' ' + iconName;
 
