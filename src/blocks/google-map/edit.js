@@ -11,7 +11,7 @@ export default function Edit ( props ) {
 
   const { attributes, setAttributes } = props;
 
-  const { width, height, zoom, address } = attributes;
+  const { width, height, zoom, address, mediaControl } = attributes;
   
   const getaddress = Object.values(address).filter(line => line != '');
   
@@ -73,6 +73,17 @@ export default function Edit ( props ) {
           <InputControl 
             value={address.country}
             onChange={country => setAttributes({ address: { ...address, country } })}
+          />
+        </PanelBody>
+
+        <PanelBody
+          title={ __( 'Mobile View Control' ) }
+          initialOpen={ true }
+        > 
+          <ToggleControl
+            label={__(`${props.attributes.mediaControl ? 'Display' : 'Hide'} on mobile`)}
+            checked={props.attributes.mediaControl}
+            onChange={mediaControl => props.setAttributes({ mediaControl })}
           />
         </PanelBody>
       </InspectorControls>

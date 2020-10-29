@@ -41,6 +41,10 @@ export const settings = {
 		mediaUrl: {
 			type: 'string',
 			default: ''
+		},
+		mediaControl: {
+			type: 'boolean',
+			default: true
 		}
 	},
   edit: compose(
@@ -50,14 +54,16 @@ export const settings = {
 		}))( Edit ),
   save: ({ attributes }) => {
 
-		const {color, backgroundColor, align} = attributes;
+		const {color, backgroundColor, align, mediaControl} = attributes;
 
 		const colorClass = color != undefined ? getColorClassName( 'color', color ) : '';
 		
 		const backgroundColorClass = backgroundColor != undefined ? getColorClassName('background-color', backgroundColor) : '';
+		
+		const hide = mediaControl ? '' : 'on-media-hide';
 
 		return (
-			<div class={`noor-block-bullet-point has-align-${align}`}>
+			<div className={`noor-block-bullet-point has-align-${align} ${hide}`}>
 				<div className={`noor-block-bullet-point__point ${backgroundColorClass}`}>
 					{attributes.useMedia && attributes.mediaId != 0 
 						? <img src={attributes.mediaUrl} /> 

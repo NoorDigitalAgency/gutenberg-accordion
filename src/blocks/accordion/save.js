@@ -3,7 +3,7 @@ import { InnerBlocks, RichText, getColorClassName } from '@wordpress/block-edito
 
 export default function save( { attributes } ) {
 
-	const { titleColor, titleBackground, contentBackground } = attributes;
+	const { titleColor, titleBackground, contentBackground, mediaControl } = attributes;
 
 	const titleColorClass = titleColor != undefined ? getColorClassName('color', titleColor) : '';
 
@@ -11,11 +11,13 @@ export default function save( { attributes } ) {
 
 	const contentBackgroundClass = contentBackground != undefined ? getColorClassName('background-color', contentBackground) : '';
 	
+	const hide = mediaControl ? '' : 'on-media-hide';
+
 	return ( 
 		<>
 			<div 
 				id={`#${attributes.anchorContent}`}
-				className={`noor-block-accordion ${titleBackgroundClass}`} aria-expanded={attributes.initialState}
+				className={`noor-block-accordion ${titleBackgroundClass} ${hide}`} aria-expanded={attributes.initialState}
 			>
 				<RichText.Content 
 					className={`noor-block-accordion__title ${titleColorClass}`}

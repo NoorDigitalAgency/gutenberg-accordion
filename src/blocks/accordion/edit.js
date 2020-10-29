@@ -6,7 +6,7 @@ import { RadioGroup } from '../../components/radio-group'
 
 export default function Edit( props ) {
 	
-	const { titleColor, setTitleColor, titleBackground, setTitleBackground, contentBackground, setContentBackground, attributes, setAttributes } = props;
+	const { titleColor, setTitleColor, titleBackground, setTitleBackground, contentBackground, setContentBackground, attributes, setAttributes, mediaControl } = props;
 	
 	const [expanded, setExpanded] = useState(false);
 
@@ -79,6 +79,17 @@ export default function Edit( props ) {
 						showIcons={true} 
 					/>
 				</PanelBody>
+
+				<PanelBody
+          title={ __( 'Mobile View Control' ) }
+          initialOpen={ true }
+        > 
+          <ToggleControl
+            label={__(`${props.attributes.mediaControl ? 'Display' : 'Hide'} on mobile`)}
+            checked={props.attributes.mediaControl}
+            onChange={mediaControl => props.setAttributes({ mediaControl })}
+          />
+        </PanelBody>
 				
 				<PanelColorSettings
 					title={__('Color settings')}
