@@ -10,7 +10,8 @@ const iconControlOptions = [
   'arrow-left-alt',
   'arrow-right-alt2',
   'arrow-left-alt2',
-  'clock'
+  'clock',
+  'location'
 ];
 
 export const addInlineIconAttribute = ( settings, name ) => {

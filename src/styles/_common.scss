@@ -9,7 +9,8 @@ $icons: (
 	"arrow-right-alt2": "\f345",
 	"arrow-left-alt": "\f340",
 	"arrow-left-alt2": "\f341",
-	"clock": "\f469"
+	"clock": "\f469",
+	"location": "\f230"
 ) !default;
 
 @each $name, $value in $icons {
