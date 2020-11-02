@@ -24,7 +24,7 @@ export const blockEdit = compose(
           <SmallScreenControl {...props} />
           {props.name === 'core/column' && <ColumnBackgrounControl {...props} />}
           {props.name === 'core/button' && <ButtonIconControl {...props} />}
-          {props.name === 'wp-bootstrap-blocks' && <ButtonAllControls {...props} />}
+          {props.name === 'wp-bootstrap-blocks/button' && <ButtonAllControls {...props} />}
         </InspectorControls>
       </Fragment>
     )

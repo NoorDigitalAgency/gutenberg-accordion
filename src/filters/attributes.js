@@ -33,7 +33,7 @@ export const attributes = (settings, name) => {
   }
 
   // wp-bootstrap-blocks plugin
-  if ( 'wp-bootstrap-blocks' === name ) {
+  if ( 'wp-bootstrap-blocks/button' === name ) {
 
     Object.assign(settings.attributes, {
       ...inlineIconAttributes,
