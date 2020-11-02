@@ -15,7 +15,7 @@ export const blockEdit = compose(
   createHigherOrderComponent( BlockEdit => props => {
   
   if ( ! props.name.includes( 'noor' ) ) {
-    console.log(props)
+
     return (
       <Fragment>
         <BlockEdit {...props} />
