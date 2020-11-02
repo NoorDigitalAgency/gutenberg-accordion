@@ -32,20 +32,6 @@ export const attributes = (settings, name) => {
     });
   }
 
-  // wp-bootstrap-blocks plugin
-  if ( 'wp-bootstrap-blocks/button' === name ) {
-
-    Object.assign(settings.attributes, {
-      ...inlineIconAttributes,
-      backgroundColor: {
-        type: 'string'
-      },
-      color: {
-        type: 'string'
-      }
-    })
-  }
-
   if ( 'core/column' === name ) {
 
     Object.assign(settings.attributes, {
