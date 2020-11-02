@@ -109,4 +109,8 @@ export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setA
       />}
     </PanelBody>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a47aee9a909a9db0d84cb1bf537e08b971c8f5aa

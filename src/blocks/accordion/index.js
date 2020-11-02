@@ -50,10 +50,6 @@ export const settings = {
 		iconAlignment: {
 			type: 'string',
 			default: 'right'
-		},
-		mediaControl: {
-			type: 'boolean',
-			default: true
 		}
 	},
 	edit: withColors({
