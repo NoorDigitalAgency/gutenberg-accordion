@@ -7,12 +7,11 @@ import { compose } from '@wordpress/compose'
 import { 
   SmallScreenControl,
   ColumnBackgrounControl,
-  ButtonIconControl,
-  ButtonAllControls
+  ButtonIconControl
 } from '../components/controls'
 
 export const blockEdit = compose(
-  withColors({ backgroundColor: 'background-color', color: 'color' }),
+  withColors({ backgroundColor: 'background-color' }),
   createHigherOrderComponent( BlockEdit => props => {
 
   if ( ! props.name.includes( 'noor' ) ) {
@@ -24,7 +23,6 @@ export const blockEdit = compose(
           <SmallScreenControl {...props} />
           {props.name === 'core/column' && <ColumnBackgrounControl {...props} />}
           {props.name === 'core/button' && <ButtonIconControl {...props} />}
-          {props.name === 'wp-bootstrap-blocks' && <ButtonAllControls {...props} />}
         </InspectorControls>
       </Fragment>
     )

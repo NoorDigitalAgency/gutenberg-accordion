@@ -3,7 +3,7 @@ Contributors:
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.4.1
-Stable tag:        1.1.4
+Stable tag:        1.1.3
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -55,10 +55,6 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * Patch 1.1.3
 
 1. Added global block control for media query display
-
-* Patch 1.1.4
-
-1. Added button attrs to wp-bootstrap-blocks button block
 
 == Arbitrary section ==
 

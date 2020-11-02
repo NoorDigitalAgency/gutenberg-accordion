@@ -110,35 +110,3 @@ export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setA
     </PanelBody>
   );
 }
-
-export const ButtonAllControls = (props) => {
-
-  const { color, setColor, backgroundColor, setBackgroundColor, setAttributes } = props;
-
-  setAttributes({ className: color.class != undefined ? color.class + ' has-color' : '' });
-
-  setAttributes({ className: backgroundColor.class != undefined ? backgroundColor.class + ' has-background' : '' });
-
-  return (
-    <Fragment>
-      <PanelColorSettings
-        title={__('Color settings')}
-        initialOpen={false}
-        colorSettings={[
-          {
-            value: backgroundColor.color,
-            onChange: setBackgroundColor,
-            label: __( 'Button background color' )
-          }, 
-          {
-            value: color.color,
-            onChange: setColor,
-            label: __( 'Button text color' )
-          }
-        ]}
-      />
-
-      <ButtonIconControl {...props} />
-    </Fragment>
-  )
-}
