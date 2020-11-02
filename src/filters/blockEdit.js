@@ -13,9 +13,9 @@ import {
 export const blockEdit = compose(
   withColors({ backgroundColor: 'background-color' }),
   createHigherOrderComponent( BlockEdit => props => {
-
+  
   if ( ! props.name.includes( 'noor' ) ) {
-    
+    console.log(props)
     return (
       <Fragment>
         <BlockEdit {...props} />
@@ -27,31 +27,6 @@ export const blockEdit = compose(
       </Fragment>
     )
   }
-
-  // if ( props.name === 'core/column' ) {
-
-  //   return (
-  //     <Fragment>
-  //       <BlockEdit {...props} />
-  //       <InspectorControls>
-  //         <ColumnBackgrounControl {...props} />
-  //       </InspectorControls>
-  //     </Fragment>
-  //   );
-  // }
-
-  // if ( props.name === 'core/button' ) {
-    
-  //   return (
-  //     <Fragment>  
-  //       <BlockEdit { ...props } />
-
-  //       <InspectorControls>
-  //         <ButtonIconControl {...props} />
-  //       </InspectorControls>
-  //     </Fragment>
-  //   );
-  // }
 
   return <BlockEdit {...props} />
 }, 'blockEdit'));

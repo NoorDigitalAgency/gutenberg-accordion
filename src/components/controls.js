@@ -34,7 +34,7 @@ export const ColumnBackgrounControl = ({ backgroundColor, setBackgroundColor, se
   );
 }
 
-export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setAttributes }) => {
+export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon, className}, setAttributes }) => {
 
   const iconControlOptions = [
     'arrow-right-alt',
@@ -44,17 +44,6 @@ export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setA
     'clock',
     'location'
   ];
-
-  const setIconClassList = () => {
-
-    const align = alignIcon ? 'has-left-icon' : 'has-right-icon';
-
-    const iconName = useIcon && icon !== '' ? `has-icon-${icon}` : '';
-
-    const className = align + ' ' + iconName;
-
-    setAttributes({ className });
-  }
     
   const setUseIcon = useIcon => {
 
@@ -74,11 +63,11 @@ export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setA
     }
 
     setAttributes({ icon: value });
-
-    setIconClassList();
   }
 
   setIcon( icon );
+
+  setAttributes({ className: (alignIcon && useIcon ? 'has-left-icon ' : 'has-right-icon ') + (icon !== '' && useIcon ? `has-icon-${icon} ` : '') });
 
   return (
     <PanelBody
@@ -109,8 +98,4 @@ export const ButtonIconControl = ({ attributes: {useIcon, alignIcon, icon}, setA
       />}
     </PanelBody>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a47aee9a909a9db0d84cb1bf537e08b971c8f5aa
