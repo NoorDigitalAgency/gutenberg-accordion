@@ -8,21 +8,7 @@ import * as googleMap from './blocks/google-map/index'
 
 import { addFilter } from '@wordpress/hooks'
 
-import { __ } from '@wordpress/i18n'
-import { createHigherOrderComponent } from '@wordpress/compose'
-import { Fragment } from '@wordpress/element'
-import { InspectorControls } from '@wordpress/block-editor'
-import { PanelBody, ToggleControl } from '@wordpress/components'
-
-import { 
-  addInlineIconAttribute,
-  withIcon
-} from './core-blocks/core-button'
-
-import { 
-  addBackgroundColor,
-  withBackgroundColor,
-} from './core-blocks/core-column'
+import { filters } from './filters/index'
 
 const prefix = 'noor/';
 
@@ -39,6 +25,7 @@ const registerNoorBlocks = () => [
   googleMap
 ].forEach( block => registerBlock( block ) );
 
+<<<<<<< HEAD
 registerNoorBlocks();
 
 const mediaQueryControl = (settings, name) => {
@@ -86,46 +73,24 @@ const mediaExtraProps = ( props, blockType, attributes ) => {
 }
 
 // MEDIA DISPLAY SWITCH
+=======
+>>>>>>> 748fc5c28efc5ed9f991a9eb3463d39c40f8649f
 addFilter(
   'blocks.registerBlockType',
   'noor/gutenberg-blocks/custom-attributes',
-  mediaQueryControl
+  filters.attributes
 );
 
 addFilter( 
   'editor.BlockEdit', 
   'noor/gutenberg-blocks/custom-control', 
-  mediaControl 
+  filters.blockEdit 
 );
 
 addFilter(
   'blocks.getSaveContent.extraProps',
   'noor/gutenberg-blocks/extraProps',
-  mediaExtraProps
+  filters.extraProps
 );
 
-// CORE/BUTTON
-addFilter( 
-  'blocks.registerBlockType', 
-  'noor/gutenberg-blocks/custom-attributes', 
-  addInlineIconAttribute 
-);
-
-addFilter( 
-  'editor.BlockEdit', 
-  'noor/gutenberg-blocks/custom-control', 
-  withIcon 
-);
-
-// CORE/COLUMN
-addFilter( 
-  'blocks.registerBlockType', 
-  'noor/gutenberg-blocks/custom-attributes', 
-  addBackgroundColor 
-);
-
-addFilter( 
-  'editor.BlockEdit', 
-  'noor/gutenberg-blocks/custom-control', 
-  withBackgroundColor
-);
+registerNoorBlocks();
