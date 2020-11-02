@@ -1,3 +1,18 @@
+const inlineIconAttributes = {
+  useIcon: {
+    type: 'boolean',
+    default: true
+  },
+  alignIcon: {
+    type: 'boolean',
+    default: false
+  },
+  icon: {
+      type: 'string',
+      default: 'arrow-right-alt'
+  }
+}
+
 export const attributes = (settings, name) => {
 
   if ( ! name.includes( 'noor' ) ) {
@@ -13,19 +28,22 @@ export const attributes = (settings, name) => {
   if ( 'core/button' === name ) {
 
     Object.assign(settings.attributes, {
-      useIcon: {
-        type: 'boolean',
-        default: true
-      },
-      alignIcon: {
-        type: 'boolean',
-        default: false
-      },
-      icon: {
-          type: 'string',
-          default: 'arrow-right-alt'
-      }
+      ...inlineIconAttributes
     });
+  }
+
+  // wp-bootstrap-blocks plugin
+  if ( 'wp-bootstrap-blocks' === name ) {
+
+    Object.assign(settings.attributes, {
+      ...inlineIconAttributes,
+      backgroundColor: {
+        type: 'string'
+      },
+      color: {
+        type: 'string'
+      }
+    })
   }
 
   if ( 'core/column' === name ) {

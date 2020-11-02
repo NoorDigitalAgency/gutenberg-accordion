@@ -17,6 +17,8 @@ $icons: (
 
 	.has-icon-#{$name} {
 
+		&::before,
+		&::after,
 		.wp-block-button__link::before,
 		.wp-block-button__link::after {
 
@@ -28,6 +30,7 @@ $icons: (
 
 		&.has-left-icon {
 
+			&::before,
 			.wp-block-button__link::before {
 				
 				display: inline-block;
@@ -38,6 +41,7 @@ $icons: (
 
 		&.has-right-icon {
 
+			&::after,
 			.wp-block-button__link::after {
 
 				position: relative;
@@ -51,6 +55,7 @@ $icons: (
 
 		&:hover {
 
+			&::after,
 			.wp-block-button__link::after {
 
 				right: -6px;
