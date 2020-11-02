@@ -43,49 +43,41 @@ registerNoorBlocks();
 
 const mediaQueryControl = (settings, name) => {
 
-  if ( ! name.includes( 'noor' ) ) {
-  
-    Object.assign(settings.attributes, {
-      mediaControl: {
-        type: 'boolean',
-        default: true
-      }
-    });
-  }
+  Object.assign(settings.attributes, {
+    mediaControl: {
+      type: 'boolean',
+      default: true
+    }
+  });
 
   return settings;
 }
 
-const mediaControl = createHigherOrderComponent( BlockEdit => props => {
+const mediaControl =   createHigherOrderComponent( BlockEdit => props => {
 
-  if ( ! props.name.includes( 'noor' ) ) {
+  return (
+    <Fragment>
+      <BlockEdit {...props} />
 
-    return (
-      <Fragment>
-        <BlockEdit {...props} />
-  
-        <InspectorControls>
-          <PanelBody
-            title={ __( 'Mobile View Control' ) }
-            initialOpen={ true }
-          > 
-            <ToggleControl
-              label={__(`${props.attributes.mediaControl ? 'Display' : 'Hide'} on mobile`)}
-              checked={props.attributes.mediaControl}
-              onChange={mediaControl => props.setAttributes({ mediaControl })}
-            />
-          </PanelBody>
-        </InspectorControls>
-      </Fragment>
-    );
-  }
-
-  return <BlockEdit {...props} />
+      <InspectorControls>
+        <PanelBody
+          title={ __( 'Mobile View Control' ) }
+          initialOpen={ true }
+        > 
+          <ToggleControl
+            label={__('Display on mobile')}
+            checked={props.attributes.mediaControl}
+            onChange={mediaControl => props.setAttributes({ mediaControl })}
+          />
+        </PanelBody>
+      </InspectorControls>
+    </Fragment>
+  );
 }, 'mediaControl');
 
 const mediaExtraProps = ( props, blockType, attributes ) => {
-
-  if ( ! attributes.mediaControl && ! blockType.name.includes('noor') ) {
+  
+  if ( ! attributes.mediaControl ) {
 
     props.className = props.className + ' on-media-hide';
   }

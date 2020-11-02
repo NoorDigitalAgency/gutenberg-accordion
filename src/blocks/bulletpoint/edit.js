@@ -4,10 +4,10 @@ import { PanelBody, Button, ResponsiveWrapper, __experimentalInputControl as Inp
 import { Fragment } from '@wordpress/element'
 
 export default function Edit( props ) {
-  
+
   const {color, setColor, backgroundColor, setBackgroundColor, attributes, setAttributes, className} = props;
 
-  const { align, mediaId, mediaControl } = attributes;
+  const { align, mediaId } = attributes;
 
   const colorClass = color.class != undefined ? color.class : '';
 
@@ -29,7 +29,7 @@ export default function Edit( props ) {
  
 	const blockStyle = {
 		backgroundImage: attributes.mediaUrl != '' ? 'url("' + attributes.mediaUrl + '")' : 'none'
-  };
+	};
   
   return (
     <Fragment>
@@ -71,17 +71,6 @@ export default function Edit( props ) {
                 value={attributes.mediaInput}
                 onChange={mediaInput => setAttributes({ mediaInput })}
               />}
-        </PanelBody>
-
-        <PanelBody
-          title={ __( 'Mobile View Control' ) }
-          initialOpen={ true }
-        > 
-          <ToggleControl
-            label={__(`${props.attributes.mediaControl ? 'Display' : 'Hide'} on mobile`)}
-            checked={props.attributes.mediaControl}
-            onChange={mediaControl => props.setAttributes({ mediaControl })}
-          />
         </PanelBody>
 
         <PanelColorSettings 

@@ -36,10 +36,6 @@ export const settings = {
     },
     src: {
       type: 'string'
-    },
-    mediaControl: {
-      type: 'boolean',
-      default: true
     }
   },
   edit: Edit,
@@ -47,7 +43,7 @@ export const settings = {
     
     const {width, height, src } = props.attributes;
 
-    props.className = `noor-block-google-map ${props.attributes.mediaControl ? '' : 'on-media-hide'}`;
+    props.className = 'noor-block-google-map';
 
     return (
       <div className={props.className} style={{width: `${width}%`, paddingBottom: `${height}%`}}>
