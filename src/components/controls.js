@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n'
 import { PanelBody, ToggleControl } from '@wordpress/components'
 import { PanelColorSettings } from '@wordpress/block-editor'
 import { RadioGroup } from '../components/radio-group'
+import { Fragment } from '@wordpress/element'
 
 export const SmallScreenControl = ({ setAttributes, attributes: { mediaControl }}) => (
   <PanelBody
