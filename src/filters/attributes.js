@@ -13,17 +13,9 @@ export const attributes = (settings, name) => {
   if ( 'core/button' === name ) {
 
     Object.assign(settings.attributes, {
-      alignIcon: {
+      useIcon: {
         type: 'boolean',
-        default: false
-      },
-      icon: {
-          type: 'string',
-          default: 'arrow-right-alt'
-      },
-      className: {
-        type: 'string',
-        default: 'is-style-primary has-right-icon has-icon-arrow-right-alt'
+        default: true
       }
     });
   }

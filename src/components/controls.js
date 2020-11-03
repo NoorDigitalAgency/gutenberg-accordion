@@ -35,18 +35,7 @@ export const ColumnBackgrounControl = ({ backgroundColor, setBackgroundColor, se
   );
 }
 
-export const ButtonIconControl = props => {
-
-  const { attributes, setAttributes } = props;
-
-  const { alignIcon, className} = attributes;
-
-  const classList = [ ...className.split(' ') ];
-
-  const classes = classList.map( name => {
-
-    
-  }).join(' ');
+export const ButtonIconControl = ({ attributes, setAttributes }) => {
 
   const iconControlOptions = [
     'arrow-right-alt',
@@ -57,43 +46,61 @@ export const ButtonIconControl = props => {
     'location'
   ];
 
-  const findIcon = () => iconControlOptions.filter( icon => classList.includes( `has-icon-${icon}` )).join('');
+  const { className } = attributes;
 
-  const [useIcon, setUseIcon] = useState(className.includes( 'has-icon-' ));
+  const classList = [...className.split( ' ' )];
 
-  const [icon, setIcon] = useState(findIcon);
+  const hasAlign = boolean => boolean ? 'right' : 'left';
+
+  const [useIcon, setUse] = useState(
+    classList.some(name => name.includes('icon' ) )
+  );
+
+  const [icon, setIcon] = useState(
+    iconControlOptions.filter( icon => classList.includes( `has-icon-${icon}` )).join('')
+  );
+
+  const [alignIcon, setAlign] = useState(
+    hasAlign( classList.some(name => name.includes('has-right-icon') ) )
+  )
+
+  const classes = () => classList.map(name => {
+
+    return name === 'has-right-icon' || name === 'has-left-icon'
+      ? `has-${alignIcon}-icon`
+      : name.includes( 'has-icon-' )
+        ? `has-icon-${icon}`
+        : name;
+  }).join( ' ' );
+
+  setAttributes({ className: classes() });
 
   return (
     <PanelBody
       title={ __( 'Inline Icon Control' ) }
       initialOpen={ true }
     > 
-      <ToggleControl
-        label={__('Use inline icon')}
-        checked={useIcon}
-        onChange={() => setUseIcon( ! useIcon )}
+      
+      <ToggleControl 
+        label={ __( `Icon to ${alignIcon}`) }
+        checked={alignIcon === 'right' ? true : false}
+        onChange={() => {
+          setAlign( hasAlign( alignIcon !== 'right' ) )
+          // setAttributes({ className: classes() });
+        }}
       />
 
-      {useIcon && 
-        <Fragment>
-          <ToggleControl 
-            label={alignIcon ? __('Icon before') : __('Icon after')}
-            checked={alignIcon}
-            onChange={() => setAttributes({ alignIcon: ! alignIcon })}
-          />
-
-          <RadioGroup
-            label={__('Inline Icon')} 
-            checked={icon}
-            onClick={(event) => {
-              event.preventDefault();
-              setIcon(findIcon)
-            }}
-            options={iconControlOptions} 
-            initialChecked={icon} 
-            showIcons={true} 
-          />
-        </Fragment>}
+      <RadioGroup
+        label={__('Inline Icon')} 
+        onClick={event => {
+          event.preventDefault();
+          setIcon( event.currentTarget.value )
+          // setAttributes({ className: classes() });
+        }}
+        options={iconControlOptions} 
+        initialChecked={icon} 
+        showIcons={true} 
+      />
     </PanelBody>
   );
 }
