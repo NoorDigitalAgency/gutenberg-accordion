@@ -48,7 +48,7 @@ export const ButtonIconControl = ({ attributes, setAttributes }) => {
 
   const { className } = attributes;
 
-  const classList = className != undefined ? [...className.split( ' ' )] : [];
+  const classList = className != undefined ? [...className.split( ' ' )] : [ `has-icon-${iconControlOptions[0]}`, 'has-right-icon'];
 
   const hasAlign = boolean => boolean ? 'right' : 'left';
 
