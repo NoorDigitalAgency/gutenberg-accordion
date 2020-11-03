@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Noor Blocks
  * Description:     Collection of custom blocks.
- * Version: 				1.1.8
+ * Version: 				1.2.0
  * Author:          Noor Digital Agency
  * Author URI:      https://noordigital.com
  * Text Domain:     blocks

@@ -48,7 +48,9 @@ export const ButtonIconControl = ({ attributes, setAttributes }) => {
 
   const { className } = attributes;
 
-  const classList = className != undefined ? [...className.split( ' ' )] : [ `has-icon-${iconControlOptions[0]}`, 'has-right-icon'];
+  let classList = className != undefined 
+    ? [...className.split( ' ' )] 
+    : [ `has-icon-${iconControlOptions[0]}`, 'has-right-icon'];
 
   const hasAlign = boolean => boolean ? 'right' : 'left';
 
@@ -56,13 +58,13 @@ export const ButtonIconControl = ({ attributes, setAttributes }) => {
     classList.some(name => name.includes('icon' ) )
   );
 
+  const [alignIcon, setAlign] = useState(
+    hasAlign( classList.some(name => name.includes('has-right-icon') ) )
+  );
+  
   const [icon, setIcon] = useState(
     iconControlOptions.filter( icon => classList.includes( `has-icon-${icon}` )).join('')
   );
-
-  const [alignIcon, setAlign] = useState(
-    hasAlign( classList.some(name => name.includes('has-right-icon') ) )
-  )
 
   const classes = () => classList.map(name => {
 
@@ -73,34 +75,39 @@ export const ButtonIconControl = ({ attributes, setAttributes }) => {
         : name;
   }).join( ' ' );
 
-  setAttributes({ className: classes() });
+  setAttributes({ className: useIcon ? classes() : undefined });
 
   return (
     <PanelBody
       title={ __( 'Inline Icon Control' ) }
       initialOpen={ true }
     > 
-      
-      <ToggleControl 
-        label={ __( `Icon to ${alignIcon}`) }
-        checked={alignIcon === 'right' ? true : false}
-        onChange={() => {
-          setAlign( hasAlign( alignIcon !== 'right' ) )
-          // setAttributes({ className: classes() });
-        }}
+      <ToggleControl
+        label={__('Use inline icon')}
+        checked={useIcon}
+        onChange={() => setUse( ! useIcon )}
       />
 
-      <RadioGroup
-        label={__('Inline Icon')} 
-        onClick={event => {
-          event.preventDefault();
-          setIcon( event.currentTarget.value )
-          // setAttributes({ className: classes() });
-        }}
-        options={iconControlOptions} 
-        initialChecked={icon} 
-        showIcons={true} 
-      />
+      {useIcon &&
+        <Fragment>
+          <ToggleControl 
+            label={ __( `Icon to ${alignIcon}`) }
+            checked={alignIcon === 'right' ? true : false}
+            onChange={() => setAlign( hasAlign( alignIcon !== 'right' ) )}
+          />
+
+          <RadioGroup
+            label={__('Inline Icon')} 
+            onClick={event => {
+              event.preventDefault();
+              setIcon( event.currentTarget.value )
+            }}
+            options={iconControlOptions} 
+            initialChecked={icon} 
+            showIcons={true} 
+          />
+        </Fragment>
+      }
     </PanelBody>
   );
 }

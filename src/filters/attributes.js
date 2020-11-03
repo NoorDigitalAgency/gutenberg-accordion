@@ -10,16 +10,6 @@ export const attributes = (settings, name) => {
     });
   }
 
-  if ( 'core/button' === name ) {
-
-    Object.assign(settings.attributes, {
-      useIcon: {
-        type: 'boolean',
-        default: true
-      }
-    });
-  }
-
   if ( 'core/column' === name ) {
 
     Object.assign(settings.attributes, {
