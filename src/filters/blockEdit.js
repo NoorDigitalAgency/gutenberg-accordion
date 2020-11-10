@@ -12,21 +12,13 @@ import {
 
 export const blockEdit = compose(
   withColors({ backgroundColor: 'background-color' }),
-  createHigherOrderComponent( BlockEdit => props => {
-  
-  if ( ! props.name.includes( 'noor' ) ) {
-
-    return (
-      <Fragment>
-        <BlockEdit {...props} />
-        <InspectorControls>
-          <SmallScreenControl {...props} />
-          {props.name === 'core/column' && <ColumnBackgrounControl {...props} />}
-          {props.name === 'core/button' && <ButtonIconControl {...props} />}
-        </InspectorControls>
-      </Fragment>
-    )
-  }
-
-  return <BlockEdit {...props} />
-}, 'blockEdit'));
+  createHigherOrderComponent( BlockEdit => props => (
+    <Fragment>
+      <BlockEdit {...props} />
+      <InspectorControls>
+        <SmallScreenControl {...props} />
+        {props.name === 'core/column' && <ColumnBackgrounControl {...props} />}
+        {props.name === 'core/button' && <ButtonIconControl {...props} />}
+      </InspectorControls>
+    </Fragment>
+  ), 'blockEdit'));

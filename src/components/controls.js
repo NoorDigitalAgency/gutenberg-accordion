@@ -10,7 +10,7 @@ export const SmallScreenControl = ({ setAttributes, attributes: { mediaControl }
     initialOpen={ true }
   > 
     <ToggleControl
-      label={__(`${mediaControl ? 'Display' : 'Hide'} on mobile`)}
+      label={__(`${mediaControl ? 'Visible' : 'Hidden'} on mobile`)}
       checked={mediaControl}
       onChange={mediaControl => setAttributes({ mediaControl })}
     />

@@ -1,14 +1,11 @@
 export const attributes = (settings, name) => {
-
-  if ( ! name.includes( 'noor' ) ) {
   
-    Object.assign(settings.attributes, {
-      mediaControl: {
-        type: 'boolean',
-        default: true
-      }
-    });
-  }
+  Object.assign(settings.attributes, {
+    mediaControl: {
+      type: 'boolean',
+      default: true
+    }
+  });
 
   if ( 'core/column' === name ) {
 

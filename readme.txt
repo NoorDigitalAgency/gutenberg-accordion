@@ -3,7 +3,7 @@ Contributors:
 Tags:              block
 Requires at least: 5.3.2
 Tested up to:      5.4.1
-Stable tag:        1.2.0
+Stable tag:        1.2.1
 Requires PHP:      7.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,9 +60,13 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 1. imporoved on button icon control
 
-* Patch 1.2.0
+* Minor 1.2.0
 
 1. Functional controls
+
+* Patch 1.2.1
+
+1. Global media query switch
 
 == Arbitrary section ==
 
